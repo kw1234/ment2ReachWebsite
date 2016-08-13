@@ -4,13 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+	"start": "node index.js"
   },
+    "dependencies": {
+	"ejs": "2.4.1",
+	"express": "4.13.3"
+    },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kw1234/ment2ReachWebsite.git"
   },
-  "keywords": [],
+    "keywords": ["node",
+		 "heroku",
+		"express"],
   "author": "",
   "license": "ISC",
   "bugs": {
