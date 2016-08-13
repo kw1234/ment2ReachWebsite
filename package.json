@@ -4,19 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-	"start": "node index.js"
+    "start": "node index.js"
   },
-    "dependencies": {
-	"ejs": "2.4.1",
-	"express": "4.13.3"
-    },
+  "dependencies": {
+    "cool-ascii-faces": "1.3.4",
+    "ejs": "2.4.1",
+    "express": "4.13.3"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kw1234/ment2ReachWebsite.git"
   },
-    "keywords": ["node",
-		 "heroku",
-		"express"],
+  "keywords": [
+    "node",
+    "heroku",
+    "express"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {
