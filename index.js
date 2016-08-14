@@ -15,7 +15,9 @@ app.set('view engine', 'ejs');
     });*/
 app.get('/', function(request, response) {
     response.sendFile(__dirname + '/index.html');
+    response.sendFile(__dirname + '/main.css');
 });
+
 
 app.get('/cool', function(request, response) {
     response.send(cool());
