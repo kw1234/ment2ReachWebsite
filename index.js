@@ -14,7 +14,7 @@ app.set('view engine', 'ejs');
     response.render('pages/index')
     });*/
 app.get('/', function(request, response) {
-    response.sendFile(__dirname + '/main.css');
+    //response.sendFile(__dirname + '/main.css'); 
     response.sendFile(__dirname + '/index.html');
     response.sendFile(__dirname + '/main.css');
 });
