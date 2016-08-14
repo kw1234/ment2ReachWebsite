@@ -25,9 +25,14 @@ app.get('/index.html', function(request, response) {
 });
 
 app.get('/news.html', function(request, response) {
-    response.sendFile(__dirname + '/news.html');
+    response.sendFile(__dirname + '/index.html');
     response.sendFile(__dirname + '/main.css');
 });
+
+/*app.get('/news', function(request, response) {
+    response.sendFile(__dirname + '/news.html');
+    response.sendFile(__dirname + '/main.css');
+});*/ 
 
 
 app.get('/cool', function(request, response) {
