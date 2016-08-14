@@ -18,6 +18,16 @@ app.get('/', function(request, response) {
     response.sendFile(__dirname + '/main.css');
 });
 
+app.get('/index.html', function(request, response) {
+    response.sendFile(__dirname + '/index.html');
+    response.sendFile(__dirname + '/main.css');
+});
+
+app.get('/news.html', function(request, response) {
+    response.sendFile(__dirname + '/news.html');
+    response.sendFile(__dirname + '/main.css');
+});
+
 
 app.get('/cool', function(request, response) {
     response.send(cool());
