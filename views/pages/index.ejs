@@ -1,29 +1,37 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <% include ../partials/header.ejs %>
+  <head>
+    <% include ../partials/header.ejs %>
   </head>
   <body>
+    
+    <% include ../partials/nav.ejs %>
 
-  <% include ../partials/nav.ejs %>
-
-<div class="jumbotron text-center">
-  <div class="container">
-      <a href="/" class="lang-logo">
-            <img src="/lang-logo.png">
-	        </a>
-		    <h1>Zalim Man You Know</h1>
-		        <p> yeah this is what it's alll about
-			 .</p>
-			     <a type="button" class="btn btn-lg btn-default" href="https://devcenter.heroku.com/ar\
-ticles/getting-started-with-nodejs"><span class="glyphicon glyphicon-flash"></span> Getti\
-ng Started with Node</a>
-    <a type="button" class="btn btn-lg btn-primary" href="https://github.com/heroku/node-\
-js-getting-started"><span class="glyphicon glyphicon-download"></span> Source on GitHub</\
-a>
-  </div>
-  </div>
-
-
-</body>
+    <ul class="sidenav">
+      <li><a class="active" href="index.html">Home</a></li>
+      <li><a href="news.html">News</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+    
+    <div class="jumbotron text-center">
+      <div class="container">
+	<a href="/" class="lang-logo">
+	  <img src="/lang-logo.png">
+	</a>
+	<h1>Zalim Man You Know</h1>
+	<p> yeah this is what it's alll about
+	  .</p>
+	<a type="button" class="btn btn-lg btn-default" href="https://devcenter.heroku.com/articles/getting-started-with-nodejs"><span class="glyphicon glyphicon-flash"></span>
+	  Getting Started with Node
+	</a>
+	<a type="button" class="btn btn-lg btn-primary" href="https://github.com/heroku/node-js-getting-started">
+	  <span class="glyphicon glyphicon-download"></span>
+	  Source on GitHub
+	</a>
+      </div>
+    </div>
+    
+    
+  </body>
 </html>

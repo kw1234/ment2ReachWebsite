@@ -10,16 +10,11 @@ app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-/*app.get('/', function(request, response) {
-    response.render('pages/index')
-    });*/
 app.get('/', function(request, response) {
-    //response.sendFile(__dirname + '/main.css'); 
-    response.sendFile(__dirname + '/index.html');
-    //response.sendFile(__dirname + '/main.css');
+    response.render('pages/index')
 });
 
-app.get('/index.html', function(request, response) {
+/*app.get('/index.html', function(request, response) {
     response.sendFile(__dirname + '/index.html');
     //response.sendFile(__dirname + '/main.css');
 });
@@ -27,12 +22,8 @@ app.get('/index.html', function(request, response) {
 app.get('/news.html', function(request, response) {
     response.sendFile(__dirname + '/index.html');
     //response.sendFile(__dirname + '/main.css');
-});
+});*/
 
-/*app.get('/news', function(request, response) {
-    response.sendFile(__dirname + '/news.html');
-    response.sendFile(__dirname + '/main.css');
-});*/ 
 
 
 app.get('/cool', function(request, response) {
