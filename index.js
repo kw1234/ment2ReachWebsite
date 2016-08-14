@@ -16,17 +16,17 @@ app.set('view engine', 'ejs');
 app.get('/', function(request, response) {
     //response.sendFile(__dirname + '/main.css'); 
     response.sendFile(__dirname + '/index.html');
-    response.sendFile(__dirname + '/main.css');
+    //response.sendFile(__dirname + '/main.css');
 });
 
 app.get('/index.html', function(request, response) {
     response.sendFile(__dirname + '/index.html');
-    response.sendFile(__dirname + '/main.css');
+    //response.sendFile(__dirname + '/main.css');
 });
 
 app.get('/news.html', function(request, response) {
     response.sendFile(__dirname + '/index.html');
-    response.sendFile(__dirname + '/main.css');
+    //response.sendFile(__dirname + '/main.css');
 });
 
 /*app.get('/news', function(request, response) {
