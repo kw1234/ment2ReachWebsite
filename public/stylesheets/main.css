@@ -137,10 +137,30 @@ footer li img {
     height: 32px;
 }
 
-.zalim {
+.bike {
     display: flex;
     align-items: center;
     background-image: url('https://s3-us-west-2.amazonaws.com/ment2reachwebsiteimages/bike.JPG');
+    background-size: cover;
+    color: #ffffff;
+    height: 500px;
+    text-shadow: 0.25px 0.25px 0.25px #000000;
+}
+
+.rose {
+    display: flex;
+    align-items: center;
+    background-image: url('https://s3-us-west-2.amazonaws.com/ment2reachwebsiteimages/rosebush.JPG');
+    background-size: cover;
+    color: #ffffff;
+    height: 500px;
+    text-shadow: 0.25px 0.25px 0.25px #000000;
+}
+
+.grass {
+    display: flex;
+    align-items: center;
+    background-image: url('https://s3-us-west-2.amazonaws.com/ment2reachwebsiteimages/grass.JPG');
     background-size: cover;
     color: #ffffff;
     height: 500px;
