@@ -135,4 +135,14 @@ footer ul {
 footer li img {
     width: 32px;
     height: 32px;
-}BB
+}
+
+.zalim {
+    display: flex;
+    align-items: center;
+    background-image: url('https://s3-us-west-2.amazonaws.com/ment2reachwebsiteimages/bike.JPG');
+    background-size: cover;
+    color: #ffffff;
+    height: 500px;
+    text-shadow: 0.25px 0.25px 0.25px #000000;
+}
