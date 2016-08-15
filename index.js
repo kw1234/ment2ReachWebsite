@@ -14,15 +14,18 @@ app.get('/', function(request, response) {
     response.render('pages/index')
 });
 
-/*app.get('/index.html', function(request, response) {
-    response.sendFile(__dirname + '/index.html');
-    //response.sendFile(__dirname + '/main.css');
-});
+/*var Highcharts = require('highcharts');
+
+// Load module after Highcharts is loaded
+require('highcharts/modules/exporting')(Highcharts);
+
+// Create the chart
+Highcharts.chart('container', { /*Highcharts options });*/
+
 
 app.get('/news.html', function(request, response) {
-    response.sendFile(__dirname + '/index.html');
-    //response.sendFile(__dirname + '/main.css');
-});*/
+    response.render('pages/news')
+});
 
 
 

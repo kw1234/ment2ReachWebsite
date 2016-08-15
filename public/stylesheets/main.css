@@ -58,6 +58,11 @@ ul.sidenav li a:hover:not(.active) {
 }
 
 div.content {
+    padding: 1px 16px;
+    height: 1000px;
+}
+
+div.sidenavContent {
     margin-left: 17%;
     padding: 1px 16px;
     height: 1000px;
@@ -66,7 +71,7 @@ div.content {
 .jumbotron {
     display: flex;
     align-items: center;
-    background-image: url('https://s3.amazonaws.com/codecademy-content/projects/make-a-website/lesson-4/jumbotron.jpg');
+    background-image: url('https://s3-us-west-2.amazonaws.com/ment2reachwebsiteimages/apricottree.JPG');
     background-size: cover;
     color: #ffffff;
     height: 500px;
