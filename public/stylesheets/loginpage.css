@@ -1,0 +1,24 @@
+body {
+    background-color:#64B3DF;
+    font-family: Futura, serif;
+    padding:0;
+    margin: 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    max-width:100%;
+}
+
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+li {
+
+}
+
+.loginForm {
+    text-align:center;
+    vertical-align:middle;
+}
