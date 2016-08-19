@@ -1,3 +1,9 @@
+header{
+    padding:0;
+    margin:0;
+}
+
+
 ul {
     list-style-type: none;
     margin: 0;
@@ -25,10 +31,9 @@ li a:hover {
 
 body {
     font-family: Futura, serif;
-    height: 100%;
+    padding:0;
     margin: 0;
     text-align: center;
-    width: 100%;
 }
 
 h1 {
@@ -58,10 +63,9 @@ h2 {
     font-size: 56px;
 }
 
-#topDiv {
+.topDiv {
     font-size: 50px;
     text-align: center;
-    vertical-align:center;
     height: 500px;
     background-color:#64B3DF;
     color: white;
