@@ -1,168 +1,68 @@
-body {
-    font-family: 'Roboto', sans-serif;
-    font-weight: 300;
-}
-
-header {
-    padding: 20px 0;
-}
-
-header .row,
-footer .row {
-    display: flex;
-    align-items: center;
-}
-
-header h1 {
-    font-weight: 700;
-    margin: 0;
-}
-
-header nav {
-    display: flex;
-    justify-content: flex-end;
-}
-
-header p {
-    padding: 0 20px;
-    margin: 0;
-}
-
-
-ul.sidenav {
+ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    width: 17%;
-    background-color: #f1f1f1;
-    position: fixed;
-    height: 100%;
-    overflow: auto;
+    overflow: hidden;
+    background-color: #333;
 }
 
-ul.sidenav li a {
+li {
+    float: left;
+}
+
+li a {
     display: block;
-    color: #000;
-    padding: 8px 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
     text-decoration: none;
 }
 
-ul.sidenav li a.active {
-    background-color: #4CAF50;
-    color: white;
+/* Change the link color to #111 (black) on hover */
+li a:hover {
+    background-color: #111;
 }
 
-ul.sidenav li a:hover:not(.active) {
-    background-color: #555;
-    color: white;
-}
-
-div.content {
-    padding: 1px 16px;
-    height: 1000px;
-}
-
-div.sidenavContent {
-    margin-left: 17%;
-    padding: 1px 16px;
-    height: 1000px;
-}
-
-.jumbotron {
-    display: flex;
-    align-items: center;
-    background-image: url('https://s3-us-west-2.amazonaws.com/ment2reachwebsiteimages/apricottree.JPG');
-    background-size: cover;
-    color: #ffffff;
-    height: 500px;
-    text-shadow: 0.25px 0.25px 0.25px #000000;
-}
-
-.jumbotron h2 {
-    font-size: 60px;
-    font-weight: 700;
+body {
+    font-family: Futura, serif;
+    height: 100%;
     margin: 0;
-    color: #fff;
-}
-
-.jumbotron h3 {
-    margin: 0 0 20px;
-    color: #fff;
-}
-
-section .row img {
-    margin: 0 0 30px;
+    text-align: center;
     width: 100%;
 }
 
-.col-md-6 {
-    margin: 0 0 30px;
+h1 {
+    font-size: 32px;
+    margin:0;
+    padding:0;
+    display:inline;
 }
 
-.btn.btn-primary {
-    border-radius: 2px;
-    border: 0px;
-    color: #fbd1d5;
-    text-shadow: none;
-    background-color: #ffffff;
+
+#leftHeader {
+    font-size: 32px;
+    text-align: left;
+    margin:0;
+    padding:0;
+    display:inline;
+    color:#64B3DF
 }
 
-.btn.btn-primary:hover {
+#leftHeaderli {
+    margin:0;
+    padding: 2px 16px;
+}
+
+h2 {
     color: #ffffff;
-    background-color: #fbd1d5;
+    font-size: 56px;
 }
 
-.btn-secondary {
-    background-color: #E8DFE0;
-    color: #ffffff;
-    margin: 0 0 30px;
-}
-
-footer {
-    font-size: 12px;
-    padding: 20px 0;
-}
-
-footer .col-sm-8 {
-    display: flex;
-    justify-content: flex-end;
-}
-
-footer ul {
-    list-style: none;
-}
-
-footer li img {
-    width: 32px;
-    height: 32px;
-}
-
-.bike {
-    display: flex;
-    align-items: center;
-    background-image: url('https://s3-us-west-2.amazonaws.com/ment2reachwebsiteimages/bike.JPG');
-    background-size: cover;
-    color: #ffffff;
+#topDiv {
+    font-size: 50px;
+    text-align: center;
+    vertical-align:center;
     height: 500px;
-    text-shadow: 0.25px 0.25px 0.25px #000000;
-}
-
-.rose {
-    display: flex;
-    align-items: center;
-    background-image: url('https://s3-us-west-2.amazonaws.com/ment2reachwebsiteimages/rosebush.JPG');
-    background-size: cover;
-    color: #ffffff;
-    height: 500px;
-    text-shadow: 0.25px 0.25px 0.25px #000000;
-}
-
-.grass {
-    display: flex;
-    align-items: center;
-    background-image: url('https://s3-us-west-2.amazonaws.com/ment2reachwebsiteimages/grass.JPG');
-    background-size: cover;
-    color: #ffffff;
-    height: 500px;
-    text-shadow: 0.25px 0.25px 0.25px #000000;
+    background-color:#64B3DF;
+    color: white;
 }
