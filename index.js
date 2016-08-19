@@ -14,6 +14,10 @@ app.get('/', function(request, response) {
     response.render('pages/index')
 });
 
+app.get('/loginpage', function(request, response) {
+    response.render('pages/loginpage')
+});
+
 /*var Highcharts = require('highcharts');
 
 // Load module after Highcharts is loaded
