@@ -39,6 +39,8 @@ body {
     margin-top: 0;
     padding-top: 0;
     text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 
 h1 {
@@ -69,11 +71,16 @@ h2 {
 }
 
 .topDiv {
-    font-size: 50px;
-    text-align: center;
+    text-align:center;
     height: 500px;
     background-color:#64B3DF;
     color: white;
     margin: 0;
     padding: 0;
+}
+
+.topP {
+    font-size: 70px;
+    width: 50%;
+    padding: 0px 350px;
 }
