@@ -4,17 +4,19 @@
       <link rel="stylesheet" type="text/css" href="/stylesheets/loginpage.css" />      
   </head>
   <body>
-    <div class="loginForm">
-      <form name="login" action="index_submit" method="get" accept-charset="utf-8">
-	<ul>
-	  <li><label for="usermail">Email</label>
-	    <input type="email" name="usermail" placeholder="email" required></li>
-	  <li><label for="password">Password</label>
-	    <input type="password" name="password" placeholder="password" required></li>
-	  <li>
-	    <input type="submit" value="Login"></li>
-	</ul>
-      </form>
-    </div>
+    <h1 id="leftHeader">Ment2Reach</h1>
+    <form class="ex1" action="action_page.php">
+      <div class="container">
+	<label><b>Email</b></label>
+	<input type="text" placeholder="Enter Email" name="email" required>
+	
+	<label><b>Password</b></label>
+	<input type="password" placeholder="Enter Password" name="psw" required>
+	<div style="text-align:center;">
+	  <button type="submit">Login</button>
+	</div>
+      </div>
+      
+    </form>
   </body>
 </html>
