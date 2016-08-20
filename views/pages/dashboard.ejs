@@ -1,62 +1,205 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!--<% include ../partials/header.ejs %>-->
+    <% include ../partials/header.ejs %>
     <link rel="stylesheet" type="text/css" href="/stylesheets/main.css" />
+    <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase-database.js"></script>
+    <script>
+      // Initialize Firebase
+
+      var config = {
+      apiKey: "AIzaSyB0BoPYFMnDctiR29gRQSNZe-qqIf91Zg4",
+      authDomain: "userlogin-4dd51.firebaseapp.com",
+      databaseURL: "https://userlogin-4dd51.firebaseio.com",
+      storageBucket: "userlogin-4dd51.appspot.com",
+      };
+      firebase.initializeApp(config);
+
+      var database = firebase.database();
+    </script>
   </head>
   <body>
+
     
     <div id="container" style="width: 550px; height: 400px; margin: 0 auto"></div>
-    <script language="JavaScript">
+    <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+      	apiKey: "AIzaSyB0BoPYFMnDctiR29gRQSNZe-qqIf91Zg4",
+     	 authDomain: "userlogin-4dd51.firebaseapp.com",
+      	databaseURL: "https://userlogin-4dd51.firebaseio.com",
+      	storageBucket: "userlogin-4dd51.appspot.com",
+      };
+      firebase.initializeApp(config);
+    </script>
+    <script>
+      var email = "kawarrier@yahoo.com"
+      var password = "kawarrier"
+      
+      firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+      // Handle Errors here.
+      	var errorCode = error.code;
+      	var errorMessage = error.message;
+      	window.alert(errorCode);
+      	console.log(errorCode);
+      	console.log(errorMessage);
+      // ...
+      });
+
+      var BASE_REF = firebase.database().ref();
+
+	  function reconfigureKey(key) {
+		var newKey = "";
+		for (var i = 0; i < key.length; i++) {
+			var ch = key[i];
+			if (ch == "@") {
+				continue;
+			} else if (ch == ".") {
+				var concatKey = newKey.concat("dot");
+				newKey = concatKey;
+			} else {
+				var concatKey = newKey.concat(ch);
+				newKey = concatKey;
+			}
+		}
+		return newKey;
+	  }
+	  
+	  function reconfigureDate(date) {
+		var newDate = "";
+		var slashCount = 0;
+		var otherCount = 0;
+		for (var i = 0; i < date.length; i++) {
+			var ch = date[i];
+			//this converts the last part of 8-17-2016 to 8-17-16 => year: 20** -> year: **
+			if (slashCount >= 2 && otherCount > 0) {
+				otherCount--;
+				continue;
+			}
+			else if (ch == "/") {
+				slashCount++;
+				otherCount++;
+				var concatDate = newDate.concat("-");
+				newDate = concatDate;
+			} else {
+				var concatDate = newDate.concat(ch);
+				newDate = concatDate;
+			}
+		}
+		return newDate;
+	  }
+        
+	  var userID = reconfigureKey(email);
+	  var valDict = {};
+	  var convertedDates = [];
+	  var dates = [];
+	  var dailyTotalList = [];
+
+	  BASE_REF.on('value', function(snapshot) {
+      	console.log(snapshot.val());
+
+      	console.log(snapshot.val());
+      	if (snapshot.val()["Users"][userID] != null) {
+      		//gets the user's values
+      		valDict = snapshot.val()["Users"][userID];
+      		//gets the valid date strings and converts them to date objects
+      		for (key in valDict) {	
+				if (key != "Groups" && key != "chatname") {
+					convertedDates.push(new Date(key));
+				}	
+			}
+			//sort date objects
+			convertedDates.sort();
+			convertedDates.reverse();
+			console.log(convertedDates);
+			//convert date objects back to date strings
+			for (index in convertedDates) {
+				var roughDate = convertedDates[index];
+				var stringDate = roughDate.toLocaleDateString();
+				var date = reconfigureDate(stringDate);
+				dates.push(date);
+			}
+			
+			for (i in dates) {
+				date = dates[i];
+				console.log(date);
+				var scoresDict = valDict[date]["scores"];
+				dailyTotalList.push(scoresDict["daily total score"]);
+			}
+			console.log(dailyTotalList);
+      	}
+      });
+      
+    console.log(valDict);
+    console.log(dates);
+
+		for (key in valDict) {	
+			console.log(key);
+			console.log(new Date(key));
+			console.log(key);
+			if (key != "Groups" && key != "chatname") {
+				keyList.push(key);
+			}
+		}
+
       $(document).ready(function () {
-      $('#container').highcharts({
-      title: {
-      text: 'Monthly Average Temperature',
-      x: -20 //center
-      },
-      subtitle: {
-      text: 'Source: WorldClimate.com',
-      x: -20
-      },
-      xAxis: {
-      categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-      },
-      yAxis: {
-      title: {
-      text: 'Temperature (°C)'
-      },
-      plotLines: [{
-      value: 0,
-      width: 1,
-      color: '#808080'
-      }]
-      },
-      tooltip: {
-      valueSuffix: '°C'
-      },
-      legend: {
-      layout: 'vertical',
-      align: 'right',
-      verticalAlign: 'middle',
-      borderWidth: 0
-      },
-      series: [{
-      name: 'Tokyo',
-      data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
-      }, {
-      name: 'New York',
-      data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5]
-      }, {
-      name: 'Berlin',
-      data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0]
-      }, {
-      name: 'London',
-      data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
-      }]
+      	$('#container').highcharts({
+      	credits: false,
+      	title: {
+      		text: 'Monthly Average Temperature',
+      		x: -20 //center
+      	},
+      	subtitle: {
+      		text: 'Source: WorldClimate.com',
+      		x: -20
+      	},
+      	xAxis: {
+      		categories: dates
+      	},
+      	yAxis: {
+      		title: {
+      			text: 'Temperature (°C)'
+      		},
+      		plotLines: [{
+      			value: 0,
+      			width: 1,
+      			color: '#808080'
+      		}]
+      	},
+      	tooltip: {
+      		valueSuffix: '°C'
+      	},
+      	legend: {
+      		layout: 'vertical',
+      		align: 'right',
+      		verticalAlign: 'middle',
+      		borderWidth: 0
+      	},
+     	 series: [{
+     		 name: 'Tokyo',
+      		data: dates
+      		}, {
+      		name: 'London',
+      		data: [3.9, 4.2]
+      		}]
+      	});
       });
-      });
-        </script>
+    </script>
     
   </body>
+  <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+    apiKey: "AIzaSyB0BoPYFMnDctiR29gRQSNZe-qqIf91Zg4",
+    authDomain: "userlogin-4dd51.firebaseapp.com",
+    databaseURL: "https://userlogin-4dd51.firebaseio.com",
+    storageBucket: "userlogin-4dd51.appspot.com",
+    };
+    firebase.initializeApp(config);
+    </script>
 </html>

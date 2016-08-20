@@ -6,6 +6,8 @@ app.set('port', (process.env.PORT || 5000));
 
 app.use(express.static(__dirname + '/public'));
 
+console.log("in index.js");
+
 // views is directory for all template files
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
@@ -18,19 +20,10 @@ app.get('/loginpage', function(request, response) {
     response.render('pages/loginpage')
 });
 
-/*var Highcharts = require('highcharts');
 
-// Load module after Highcharts is loaded
-require('highcharts/modules/exporting')(Highcharts);
-
-// Create the chart
-Highcharts.chart('container', { /*Highcharts options });*/
-
-
-app.get('/news.html', function(request, response) {
-    response.render('pages/news')
+app.get('/dashboard', function(request, response) {
+    response.render('pages/dashboard')
 });
-
 
 
 app.get('/cool', function(request, response) {
