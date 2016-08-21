@@ -2,7 +2,7 @@
 <html>
   <head>
     <% include ../partials/header.ejs %>
-    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css" />
+    <link rel="stylesheet" type="text/css" href="/stylesheets/dashboard.css" />
     <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase-auth.js"></script>
@@ -47,7 +47,6 @@
       	window.alert(errorCode);
       	console.log(errorCode);
       	console.log(errorMessage);
-      // ...
       });
 
       var BASE_REF = firebase.database().ref();
@@ -92,6 +91,44 @@
 		}
 		return newDate;
 	  }
+	  
+	  function setChart(chartTitle, yAxisTitle, xAxisPoints, dataTitle, dataPoints) {
+	  	$(document).ready(function () {
+      			$('#container').highcharts({
+      			credits: false,
+      				title: {
+      					text: chartTitle,
+      					x: -20 //center
+      				},
+      				xAxis: {
+      					categories: xAxisPoints
+      				},
+      				yAxis: {
+      					title: {
+      						text: yAxisTitle
+      					},
+      					plotLines: [{
+      						value: 0,
+      						width: 1,
+      						color: '#808080'
+      					}]
+      				},
+      				tooltip: {
+      					valueSuffix: ''
+      				},
+      				legend: {
+      					layout: 'vertical',
+      					align: 'right',
+      					verticalAlign: 'middle',
+      					borderWidth: 0
+      				},
+     				 series: [{
+      						name: dataTitle,
+      						data: dataPoints
+      				}]
+      			});
+      		});
+	  }
         
 	  var userID = reconfigureKey(email);
 	  var valDict = {};
@@ -131,63 +168,14 @@
 				dailyTotalList.push(scoresDict["daily total score"]);
 			}
 			console.log(dailyTotalList);
+			
+			setChart("Daily Score Totals", "Scores", dates, "daily total", dailyTotalList)
+			
       	}
       });
       
-    console.log(valDict);
-    console.log(dates);
 
-		for (key in valDict) {	
-			console.log(key);
-			console.log(new Date(key));
-			console.log(key);
-			if (key != "Groups" && key != "chatname") {
-				keyList.push(key);
-			}
-		}
-
-      $(document).ready(function () {
-      	$('#container').highcharts({
-      	credits: false,
-      	title: {
-      		text: 'Monthly Average Temperature',
-      		x: -20 //center
-      	},
-      	subtitle: {
-      		text: 'Source: WorldClimate.com',
-      		x: -20
-      	},
-      	xAxis: {
-      		categories: dates
-      	},
-      	yAxis: {
-      		title: {
-      			text: 'Temperature (°C)'
-      		},
-      		plotLines: [{
-      			value: 0,
-      			width: 1,
-      			color: '#808080'
-      		}]
-      	},
-      	tooltip: {
-      		valueSuffix: '°C'
-      	},
-      	legend: {
-      		layout: 'vertical',
-      		align: 'right',
-      		verticalAlign: 'middle',
-      		borderWidth: 0
-      	},
-     	 series: [{
-     		 name: 'Tokyo',
-      		data: dates
-      		}, {
-      		name: 'London',
-      		data: [3.9, 4.2]
-      		}]
-      	});
-      });
+     
     </script>
     
   </body>
