@@ -46,9 +46,13 @@ app.post('/dashboard', function (req, res) {
 	console.log(email);
 	console.log("dashboard post password");
 	console.log(password);
-	app.get('/loginpage', function(req, res, next) {
-  		res.json({ message: 'Hello World' });
-	});
+
+});
+
+app.get('/dashboard', function(req, res, next) {
+	console.log("sending hello world from index.js to dashboard");
+  	res.json({ message: 'Hello World' });
+	res.send("hello you world");
 });
 
 

@@ -29,6 +29,21 @@
     <div id="dailyTotalChart" style="width: 550px; height: 400px; margin: 0 auto"></div>
     <div id="overallFeelingChart" style="width: 550px; height: 400px; margin: 0 auto"></div>
     
+    <button id="logOutButton">Log Out</button>
+    <script>
+    	$(document).ready(function(){
+    		$("#logOutButton").click(function(){
+    			firebase.auth().signOut().then(function() {
+ 					console.log("logged out");
+ 					document.location.href = "/";
+				}, function(error) {
+  					console.log("logout error");
+  					console.log(error);
+				});
+    		});
+    	});
+    	
+    </script>
     
     <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
     <script>
@@ -42,7 +57,16 @@
       firebase.initializeApp(config);
     </script>
     <script>
-      //var email = "kawarrier@yahoo.com"
+    	var user = firebase.auth().currentUser;
+    	if (user) {
+    		console.log(user);
+			//document.location.href = "/dashboard";
+		} else {
+ 			console.log("no user logged in");
+ 		}
+ 		
+    
+      //var email = user["email"];
       //var password = "kawarrier"
       
       /*firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
@@ -53,6 +77,13 @@
       	console.log(errorCode);
       	console.log(errorMessage);
       });*/
+      console.log("above the click");
+      
+      $.get('/dashboard', {}, function(data){
+      	//console.log(data)
+      });
+
+
 
       var BASE_REF = firebase.database().ref();
 
@@ -157,7 +188,7 @@
       		});
 	  }
         
-	  var userID = reconfigureKey(email);
+
 	  var valDict = {};
 	  var convertedDates = [];
 	  var dates = [];
@@ -168,50 +199,61 @@
 	  var dinnerScoreList = [];
 	  var studyingScoreList = [];
 	  var trainingScoreList = [];
+	
+	firebase.auth().onAuthStateChanged(function(user) {
+ 		if (user) {
+    		console.log(user["email"]);
+    		var email = user["email"];
+    		var userID = reconfigureKey(email);
+    		BASE_REF.on('value', function(snapshot) {
+      			console.log(snapshot.val());
 
-	  BASE_REF.on('value', function(snapshot) {
-      	console.log(snapshot.val());
+      			console.log(snapshot.val());
+      			if (snapshot.val()["Users"][userID] != null) {
+      				//gets the user's values
+      				valDict = snapshot.val()["Users"][userID];
+      				//gets the valid date strings and converts them to date objects
+      				for (key in valDict) {	
+						if (key != "Groups" && key != "chatname") {
+							convertedDates.push(new Date(key));
+						}	
+					}
+					//sort date objects
+					convertedDates.sort();
+					convertedDates.reverse();
+					console.log(convertedDates);
+					//convert date objects back to date strings
+					for (index in convertedDates) {
+						var roughDate = convertedDates[index];
+						var stringDate = roughDate.toLocaleDateString();
+						var date = reconfigureDate(stringDate);
+						dates.push(date);
+					}
+			
+					for (i in dates) {
+						date = dates[i];
+						console.log(date);
+						var scoresDict = valDict[date]["scores"];
+						dailyTotalList.push(scoresDict["daily total score"]);
+						overallFeelingList.push(scoresDict["overall feeling score"]);
+						breakfastScoreList.push(scoresDict["breakfast score"]);
+						lunchScoreList.push(scoresDict["lunch score"]);
+						dinnerScoreList.push(scoresDict["dinner score"]);
+						studyingScoreList.push(scoresDict["studying score"]);
+						trainingScoreList.push(scoresDict["training score"]);
+					}
+			
+					setChart("dailyTotalChart","Daily Score Totals", "Scores", dates, "daily total", dailyTotalList);
+					setChart("overallFeelingChart","Overall Feeling Scores", "Scores", dates, "overall feeling", overallFeelingList);
+			
+      			}
+      		});
+  		} else {
+  		   // No user is signed in.
+  		   console.log("no user signed in");
+  		}
+	});
 
-      	console.log(snapshot.val());
-      	if (snapshot.val()["Users"][userID] != null) {
-      		//gets the user's values
-      		valDict = snapshot.val()["Users"][userID];
-      		//gets the valid date strings and converts them to date objects
-      		for (key in valDict) {	
-				if (key != "Groups" && key != "chatname") {
-					convertedDates.push(new Date(key));
-				}	
-			}
-			//sort date objects
-			convertedDates.sort();
-			convertedDates.reverse();
-			console.log(convertedDates);
-			//convert date objects back to date strings
-			for (index in convertedDates) {
-				var roughDate = convertedDates[index];
-				var stringDate = roughDate.toLocaleDateString();
-				var date = reconfigureDate(stringDate);
-				dates.push(date);
-			}
-			
-			for (i in dates) {
-				date = dates[i];
-				console.log(date);
-				var scoresDict = valDict[date]["scores"];
-				dailyTotalList.push(scoresDict["daily total score"]);
-				overallFeelingList.push(scoresDict["overall feeling score"]);
-				breakfastScoreList.push(scoresDict["breakfast score"]);
-				lunchScoreList.push(scoresDict["lunch score"]);
-				dinnerScoreList.push(scoresDict["dinner score"]);
-				studyingScoreList.push(scoresDict["studying score"]);
-				trainingScoreList.push(scoresDict["training score"]);
-			}
-			
-			setChart("dailyTotalChart","Daily Score Totals", "Scores", dates, "daily total", dailyTotalList);
-			setChart("overallFeelingChart","Overall Feeling Scores", "Scores", dates, "overall feeling", overallFeelingList);
-			
-      	}
-      });
       
 
      
