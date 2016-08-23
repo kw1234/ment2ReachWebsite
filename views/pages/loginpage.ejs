@@ -27,15 +27,25 @@
     <h1 id="leftHeader">Ment2Reach</h1>
     
     <script>
-    //var email = document.getElementById('email').value;
-    //var password = document.getElementById('psw').value;
-    //console.log(email);
-    //console.log(password);
-    console.log("click button script");
-    var isValid = false;
+
+	firebase.auth().onAuthStateChanged(function(user) {
+ 		if (user) {
+    		console.log(user);
+			document.location.href = "/dashboard";
+  		} else {
+  		   // No user is signed in.
+  		}
+	});
+
+    var user = firebase.auth().currentUser;
+    if (user) {
+    	console.log(user);
+		document.location.href = "/dashboard";
+	} else {
+ 				 
+	}
 	$(document).ready(function(){
 		console.log("click button func");
-		isValid = false;
     	$("#submitButton").click(function(){
     	
     		var email = document.getElementById('email').value;
@@ -49,40 +59,35 @@
     		console.log($("#email").val());
     		console.log($("#psw").val());
     		
-    		var signInError = "";
+
+    		
+			if (user) {
+ 				 // User is signed in.
+				console.log(user);
+			} else {
+ 				 
+			}
+    		
+
     	
     		firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
       			// Handle Errors here.
       			var errorCode = error.code;
       			var errorMessage = error.message;
       			
-
-				if(error != null ) {
-					console.log("somethin happening");
-					window.alert(errorCode);
-					window.alert(errorMessage);
-					console.log(errorCode);
-					console.log(errorMessage);
-					return error;
-				}
-			
+      			window.alert(errorCode);
+				window.alert(errorMessage);
+				console.log(errorCode);
+				console.log(errorMessage);
 
       		});
       		
-      		firebase.auth().onAuthStateChanged(function(user) {
-  				if (user) {
-    				document.location.href = "/dashboard";
-  				} else {
- 				   // No user is signed in.
-  				}
-			});
+
+
+			
+			
     	});
     	
-    	console.log(isValid);
-    	
-    	if(isValid) {
-    		document.location.href = "/dashboard";
-    	}
 	});
 	</script>
     
