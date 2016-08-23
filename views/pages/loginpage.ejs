@@ -1,22 +1,102 @@
 <!DOCTYPE html>
 <html>
   <head>
-      <link rel="stylesheet" type="text/css" href="/stylesheets/loginpage.css" />      
+      <link rel="stylesheet" type="text/css" href="/stylesheets/loginpage.css" />  
+      <script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+      <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase-auth.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase-database.js"></script>  
+      
+      <script>
+      	// Initialize Firebase
+
+     	var config = {
+     		apiKey: "AIzaSyB0BoPYFMnDctiR29gRQSNZe-qqIf91Zg4",
+      		authDomain: "userlogin-4dd51.firebaseapp.com",
+      		databaseURL: "https://userlogin-4dd51.firebaseio.com",
+      		storageBucket: "userlogin-4dd51.appspot.com",
+      	};
+      	firebase.initializeApp(config);
+
+      	var database = firebase.database();
+    </script>
+        
   </head>
   <body>
     <h1 id="leftHeader">Ment2Reach</h1>
-    <form class="ex1" action="action_page.php">
-      <div class="container">
-	<label><b>Email</b></label>
-	<input type="text" placeholder="Enter Email" name="email" required>
+    
+    <script>
+    //var email = document.getElementById('email').value;
+    //var password = document.getElementById('psw').value;
+    //console.log(email);
+    //console.log(password);
+    console.log("click button script");
+    var isValid = false;
+	$(document).ready(function(){
+		console.log("click button func");
+		isValid = false;
+    	$("#submitButton").click(function(){
+    	
+    		var email = document.getElementById('email').value;
+    		var password = document.getElementById('psw').value;
+    		console.log(email);
+    		console.log(password);
+    	
+
+    	
+    		console.log("clicked submitButton");
+    		console.log($("#email").val());
+    		console.log($("#psw").val());
+    		
+    		var signInError = "";
+    	
+    		firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+      			// Handle Errors here.
+      			var errorCode = error.code;
+      			var errorMessage = error.message;
+      			
+
+				if(error != null ) {
+					console.log("somethin happening");
+					window.alert(errorCode);
+					window.alert(errorMessage);
+					console.log(errorCode);
+					console.log(errorMessage);
+					return error;
+				}
+			
+
+      		});
+      		
+      		firebase.auth().onAuthStateChanged(function(user) {
+  				if (user) {
+    				document.location.href = "/dashboard";
+  				} else {
+ 				   // No user is signed in.
+  				}
+			});
+    	});
+    	
+    	console.log(isValid);
+    	
+    	if(isValid) {
+    		document.location.href = "/dashboard";
+    	}
+	});
+	</script>
+    
+    <!--<form id="loginForm" class="ex1" role="form">-->
+    	<div id="loginForm" class="ex1">
+			<label><b>Email</b></label>
+			<input type="text" placeholder="Enter Email" name="email" id="email" required>
 	
-	<label><b>Password</b></label>
-	<input type="password" placeholder="Enter Password" name="psw" required>
-	<div style="text-align:center;">
-	  <button type="submit">Login</button>
-	</div>
-      </div>
-      
-    </form>
+			<label><b>Password</b></label>
+			<input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+			<div style="text-align:center;">
+	 			<button id="submitButton" type="submit">Login</button>
+			</div>
+      	</div>
+	<!--</form>-->
   </body>
 </html>
