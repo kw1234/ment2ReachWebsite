@@ -7,9 +7,10 @@
     "start": "node index.js"
   },
   "dependencies": {
+    "body-parser": "*",
     "cool-ascii-faces": "1.3.4",
     "ejs": "2.4.1",
-    "express": "4.13.3",
+    "express": "*",
     "firebase": "^3.3.0",
     "highcharts": "^4.2.6"
   },

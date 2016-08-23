@@ -31,7 +31,7 @@
 	firebase.auth().onAuthStateChanged(function(user) {
  		if (user) {
     		console.log(user);
-			document.location.href = "/dashboard";
+			//document.location.href = "/dashboard";
   		} else {
   		   // No user is signed in.
   		}
@@ -40,7 +40,7 @@
     var user = firebase.auth().currentUser;
     if (user) {
     	console.log(user);
-		document.location.href = "/dashboard";
+		//document.location.href = "/dashboard";
 	} else {
  				 
 	}
@@ -89,10 +89,19 @@
     	});
     	
 	});
+	
+	$.ajax({
+	  	console.log("in the ajax");
+  		url: "/loginpage",
+  		complete: function(data) {
+  			console.log("in the ajax");
+    		console.log(data);
+  		}
+	});
 	</script>
     
-    <!--<form id="loginForm" class="ex1" role="form">-->
-    	<div id="loginForm" class="ex1">
+    <form id="loginForm" class="ex1" role="form" action="/dashboard" method="post">
+    	<div>
 			<label><b>Email</b></label>
 			<input type="text" placeholder="Enter Email" name="email" id="email" required>
 	
@@ -102,6 +111,6 @@
 	 			<button id="submitButton" type="submit">Login</button>
 			</div>
       	</div>
-	<!--</form>-->
+	</form>
   </body>
 </html>
