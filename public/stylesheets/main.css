@@ -93,14 +93,76 @@ h2 {
     font-size: 56px;
 }
 
-.topDiv {
+div.parallax {
+    /* The image used */
+    background-image: url(http://www.biblestudynote.com/wp-content/uploads/2015/09/london-2012-summer-olympic-games-womens-100m-dash.jpg);
+
+    /* Set a specific height */
+    min-height: 500px;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+}
+
+div.parallax2 { 
+	    /* The image used */
+    background-image: url(https://d3thflcq1yqzn0.cloudfront.net/023616330_prevstill.jpeg);
+
+    /* Set a specific height */
+    min-height: 500px;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+}
+
+div.parallax3 { 
+	    /* The image used */
+    background-image: url(http://wallpapercave.com/wp/0bWwqMI.png);
+
+    /* Set a specific height */
+    min-height: 500px;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+}
+
+div.parallax4 { 
+	    /* The image used */
+    background-image: url(http://www.braveheartsadventures.org.au/images/pictures/large/LAA.jpg);
+
+    /* Set a specific height */
+    min-height: 500px;
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+}
+
+
+
+div.topDiv {
     text-align:center;
     height: 500px;
     background-color:#64B3DF;
     color: white;
     margin: 0;
     padding: 0;
-    background-image:url(http://www.biblestudynote.com/wp-content/uploads/2015/09/london-2012-summer-olympic-games-womens-100m-dash.jpg)
+    
 }
 
 .topP {

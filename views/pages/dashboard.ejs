@@ -28,6 +28,12 @@
     <!-- chart 1-->
     <div id="dailyTotalChart" style="width: 550px; height: 400px; margin: 0 auto"></div>
     <div id="overallFeelingChart" style="width: 550px; height: 400px; margin: 0 auto"></div>
+    <div id="breakfastChart" style="width: 550px; height: 400px; margin: 0 auto"></div>
+    <div id="lunchChart" style="width: 550px; height: 400px; margin: 0 auto"></div>
+    <div id="dinnerChart" style="width: 550px; height: 400px; margin: 0 auto"></div>
+    <div id="studyChart" style="width: 550px; height: 400px; margin: 0 auto"></div>
+    <div id="trainingChart" style="width: 550px; height: 400px; margin: 0 auto"></div>
+    
     
     <button id="logOutButton">Log Out</button>
     <script>
@@ -65,18 +71,7 @@
  			console.log("no user logged in");
  		}
  		
-    
-      //var email = user["email"];
-      //var password = "kawarrier"
-      
-      /*firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
-      // Handle Errors here.
-      	var errorCode = error.code;
-      	var errorMessage = error.message;
-      	window.alert(errorCode);
-      	console.log(errorCode);
-      	console.log(errorMessage);
-      });*/
+
       console.log("above the click");
       
       $.get('/dashboard', {}, function(data){
@@ -245,12 +240,18 @@
 			
 					setChart("dailyTotalChart","Daily Score Totals", "Scores", dates, "daily total", dailyTotalList);
 					setChart("overallFeelingChart","Overall Feeling Scores", "Scores", dates, "overall feeling", overallFeelingList);
+					setChart("breakfastChart","Breakfast Scores", "Scores", dates, "breakfast", breakfastScoreList);
+					setChart("lunchChart","Lunch Scores", "Scores", dates, "lunch", lunchScoreList);
+					setChart("dinnerChart","Dinner Scores", "Scores", dates, "dinner", dinnerScoreList);
+					setChart("studyingChart","Study Scores", "Scores", dates, "study", studyingScoreList);
+					setChart("trainingChart","Training Scores", "Scores", dates, "training", trainingScoreList);
 			
       			}
       		});
   		} else {
   		   // No user is signed in.
   		   console.log("no user signed in");
+  		   document.location.href = "/loginpage";
   		}
 	});
 
