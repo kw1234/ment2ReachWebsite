@@ -23,16 +23,24 @@
   </head>
   <body>
   
+	<ul class="sidenav">
+  		<li><a href="#home">Home</a></li>
+  		<li><a href="#news">News</a></li>
+  		<li><a href="#contact">Contact</a></li>
+  		<li><a href="#about">About</a></li>
+	</ul>
 
 
     <!-- chart 1-->
-    <div id="dailyTotalChart" style="width: 550px; height: 400px; margin: 0 auto"></div>
-    <div id="overallFeelingChart" style="width: 550px; height: 400px; margin: 0 auto"></div>
-    <div id="breakfastChart" style="width: 550px; height: 400px; margin: 0 auto"></div>
-    <div id="lunchChart" style="width: 550px; height: 400px; margin: 0 auto"></div>
-    <div id="dinnerChart" style="width: 550px; height: 400px; margin: 0 auto"></div>
-    <div id="studyChart" style="width: 550px; height: 400px; margin: 0 auto"></div>
-    <div id="trainingChart" style="width: 550px; height: 400px; margin: 0 auto"></div>
+    <div class="chartDiv">
+    <div id="dailyTotalChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
+    <div id="overallFeelingChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
+    <div id="breakfastChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
+    <div id="lunchChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
+    <div id="dinnerChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
+    <div id="studyChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
+    <div id="trainingChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
+    </div>
     
     
     <button id="logOutButton">Log Out</button>
@@ -243,7 +251,7 @@
 					setChart("breakfastChart","Breakfast Scores", "Scores", dates, "breakfast", breakfastScoreList);
 					setChart("lunchChart","Lunch Scores", "Scores", dates, "lunch", lunchScoreList);
 					setChart("dinnerChart","Dinner Scores", "Scores", dates, "dinner", dinnerScoreList);
-					setChart("studyingChart","Study Scores", "Scores", dates, "study", studyingScoreList);
+					setChart("studyChart","Study Scores", "Scores", dates, "study", studyingScoreList);
 					setChart("trainingChart","Training Scores", "Scores", dates, "training", trainingScoreList);
 			
       			}

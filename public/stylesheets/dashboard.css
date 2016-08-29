@@ -1,3 +1,32 @@
+ul.sidenav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 17%;
+    background-color: black;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+}
+
+ul.sidenav li a {
+    display: block;
+    color: white;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+ 
+ul.sidenav li a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+ul.sidenav li a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+}
+
+
 body {
     vertical-align: middle;
     background-color: #F5F5F5;
@@ -37,16 +66,7 @@ button {
     width: 100px;
     text-align:center;
     
-    
-    background-color: black;
-    color: white;
-    font-size: 15px;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100px;
-    text-align:center;
+
 }
 
 .cancelbtn {
@@ -66,16 +86,33 @@ button {
     margin: auto;
 }
 
-
-
-/* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
-    span.psw {
-	display: block;
-	float: none;
-    }
-    .cancelbtn {
-	width: 100%;
-    }
+div.chartDiv {
+	display: flex;
+  flex-wrap: wrap;
+ 
+	margin-left: 17%;
 }
+
+
+
+
+/*@media screen and (max-width: 1050px){
+    ul.sidenav {
+        width:100%;
+        height:auto;
+        position:relative;
+    }
+    ul.sidenav li a {
+        float: left;
+        padding: 15px;
+    }
+    div.content {margin-left:0;}
+}
+
+@media screen and (max-width: 400px){
+    ul.sidenav li a {
+        text-align: center;
+        float: none;
+    }
+}*/
 
