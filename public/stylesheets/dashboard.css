@@ -92,6 +92,12 @@ div.chartDiv {
  
 	margin-left: 17%;
 }
+div.chartDiv2 {
+	display: flex;
+  flex-wrap: wrap;
+ 
+	margin-left: 17%;
+}
 
 
 

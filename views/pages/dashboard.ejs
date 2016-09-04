@@ -24,16 +24,25 @@
   <body>
   
 	<ul class="sidenav">
-  		<li><a href="#home">Home</a></li>
-  		<li><a href="#news">News</a></li>
-  		<li><a href="#contact">Contact</a></li>
-  		<li><a href="#about">About</a></li>
+  		<li><a href="/dashboard">Home</a></li>
+  		<li><a href="#news">Reflect</a></li>
+  		<li><a href="#contact">Progress</a></li>
+  		<li><a href="#about">Journal</a></li>
   		<li><button id="logOutButton">Log Out</button></li>
 	</ul>
 
 
     <!-- chart 1-->
     <div class="chartDiv">
+    <div id="dailyTotalChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
+    <div id="overallFeelingChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
+    <div id="breakfastChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
+    <div id="lunchChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
+    <div id="dinnerChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
+    <div id="studyChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
+    <div id="trainingChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
+    </div>
+    <div class="chartDiv2">
     <div id="dailyTotalChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
     <div id="overallFeelingChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
     <div id="breakfastChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
@@ -138,6 +147,10 @@
 	  	console.log(containerID);
 	  	
 	  	var seriesList = []
+	  	//var title = dataTitles
+	  	//var data = dataPointSeries
+	  	//console.log(title)
+	  	//console.log(data)
 	  	for (index in dataTitles) {
 	  		var title = dataTitles[index];
 	  		var data = dataPointSeries[index];
@@ -146,13 +159,13 @@
 	  		seriesList.push({name: title,
 	  						 series: data});
 	  	}
-	  	console.log("series list 1");
-	  	console.log(seriesList);
+	  	//console.log("series list 1");
+	  	//console.log(seriesList);
 	  
 	  	$(document).ready(function () {
 	  			
-	  			console.log("series list 2");
-	  			console.log(seriesList);
+	  			//console.log("series list 2");
+	  			//console.log(seriesList);
 	  	
       			$(containerID).highcharts({
       			credits: false,
@@ -193,26 +206,39 @@
 	  }
         
 
-	  var valDict = {};
+	  /*var valDict = {};
 	  var convertedDates = [];
-	  var dates = [];
+	  var dates = new Set([String]);
+	  
 	  var dailyTotalList = [];
+	  var dailyTotalSet = new Set([String]);
 	  var overallFeelingList = [];
 	  var breakfastScoreList = [];
 	  var lunchScoreList = [];
 	  var dinnerScoreList = [];
 	  var studyingScoreList = [];
-	  var trainingScoreList = [];
+	  var trainingScoreList = [];*/
 	
 	firebase.auth().onAuthStateChanged(function(user) {
  		if (user) {
+ 		
     		console.log(user["email"]);
     		var email = user["email"];
     		var userID = reconfigureKey(email);
     		BASE_REF.on('value', function(snapshot) {
-      			console.log(snapshot.val());
-
-      			console.log(snapshot.val());
+      			
+      			var valDict = {};
+	 			var convertedDates = [];
+	  			var dates = new Set([String]);
+	  
+	 			var dailyTotalList = [];
+	  			var overallFeelingList = [];
+	  			var breakfastScoreList = [];
+	  			var lunchScoreList = [];
+	  			var dinnerScoreList = [];
+	  			var studyingScoreList = [];
+	  			var trainingScoreList = [];
+      			
       			if (snapshot.val()["Users"][userID] != null) {
       				//gets the user's values
       				valDict = snapshot.val()["Users"][userID];
@@ -223,37 +249,61 @@
 						}	
 					}
 					//sort date objects
-					convertedDates.sort();
+					convertedDates.sort(function(a,b) { 
+						console.log(a)
+    					return b.getTime() - a.getTime()
+					});
+					//convertedDates.sort();
 					convertedDates.reverse();
+					console.log("them dates");
 					console.log(convertedDates);
 					//convert date objects back to date strings
 					for (index in convertedDates) {
 						var roughDate = convertedDates[index];
 						var stringDate = roughDate.toLocaleDateString();
 						var date = reconfigureDate(stringDate);
-						dates.push(date);
+						dates.add(date);
+						
+					}
+					console.log("dates");
+					console.log(dates);
+					
+					//for (let [key, value] of dates.entries()) console.log(value);
+					/*for (let [key, value] of dates.entries()) {
+						console.log(key);
+						console.log(value+"");
+					}*/
+					
+					for (value of dates) {
+						//date = dates[i];
+						if (typeof value!="function") {
+							console.log("date");
+							console.log(value);
+							var scoresDict = valDict[value]["scores"];
+							console.log("scoresDict");
+							console.log(scoresDict.keys);
+							dailyTotalList.push(scoresDict["daily total score"]);
+							overallFeelingList.push(scoresDict["overall feeling score"]);
+							breakfastScoreList.push(scoresDict["breakfast score"]);
+							lunchScoreList.push(scoresDict["lunch score"]);
+							dinnerScoreList.push(scoresDict["dinner score"]);
+							studyingScoreList.push(scoresDict["studying score"]);
+							trainingScoreList.push(scoresDict["training score"]);
+						} else {
+							dates.delete(value);
+						}
 					}
 			
-					for (i in dates) {
-						date = dates[i];
-						console.log(date);
-						var scoresDict = valDict[date]["scores"];
-						dailyTotalList.push(scoresDict["daily total score"]);
-						overallFeelingList.push(scoresDict["overall feeling score"]);
-						breakfastScoreList.push(scoresDict["breakfast score"]);
-						lunchScoreList.push(scoresDict["lunch score"]);
-						dinnerScoreList.push(scoresDict["dinner score"]);
-						studyingScoreList.push(scoresDict["studying score"]);
-						trainingScoreList.push(scoresDict["training score"]);
-					}
+					console.log("daily total list");
+					console.log(dailyTotalList);
 			
-					setChart("dailyTotalChart","Daily Score Totals", "Scores", dates, "daily total", dailyTotalList);
-					setChart("overallFeelingChart","Overall Feeling Scores", "Scores", dates, "overall feeling", overallFeelingList);
-					setChart("breakfastChart","Breakfast Scores", "Scores", dates, "breakfast", breakfastScoreList);
-					setChart("lunchChart","Lunch Scores", "Scores", dates, "lunch", lunchScoreList);
-					setChart("dinnerChart","Dinner Scores", "Scores", dates, "dinner", dinnerScoreList);
-					setChart("studyChart","Study Scores", "Scores", dates, "study", studyingScoreList);
-					setChart("trainingChart","Training Scores", "Scores", dates, "training", trainingScoreList);
+					setChart("dailyTotalChart","Daily Score Totals", "Scores", Array.from(dates), "daily total", dailyTotalList);
+					setChart("overallFeelingChart","Overall Feeling Scores", "Scores", Array.from(dates), "overall feeling", overallFeelingList);
+					setChart("breakfastChart","Breakfast Scores", "Scores", Array.from(dates), "breakfast", breakfastScoreList);
+					setChart("lunchChart","Lunch Scores", "Scores", Array.from(dates), "lunch", lunchScoreList);
+					setChart("dinnerChart","Dinner Scores", "Scores", Array.from(dates), "dinner", dinnerScoreList);
+					setChart("studyChart","Study Scores", "Scores", Array.from(dates), "study", studyingScoreList);
+					setChart("trainingChart","Training Scores", "Scores", Array.from(dates), "training", trainingScoreList);
 			
       			}
       		});
