@@ -66,7 +66,7 @@ h1 {
     margin:0;
     padding:0;
     display:inline;
-    color:#64B3DF
+    color:#64B3DF;
 }
 
 #leftHeaderli {
@@ -113,7 +113,7 @@ div.parallax2 {
     background-image: url(https://d3thflcq1yqzn0.cloudfront.net/023616330_prevstill.jpeg);
 
     /* Set a specific height */
-    min-height: 500px;
+    min-height: 350px;
 
     /* Create the parallax scrolling effect */
     background-attachment: fixed;
@@ -128,14 +128,14 @@ div.parallax3 {
     background-image: url(http://wallpapercave.com/wp/0bWwqMI.png);
 
     /* Set a specific height */
-    min-height: 500px;
+    min-height: 350px;
 
     /* Create the parallax scrolling effect */
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    color: white;
+    color: #64B3DF;
 }
 
 div.parallax4 { 
@@ -143,7 +143,7 @@ div.parallax4 {
     background-image: url(http://www.braveheartsadventures.org.au/images/pictures/large/LAA.jpg);
 
     /* Set a specific height */
-    min-height: 500px;
+    min-height: 350px;
 
     /* Create the parallax scrolling effect */
     background-attachment: fixed;
@@ -152,7 +152,6 @@ div.parallax4 {
     background-size: cover;
     color: white;
 }
-
 
 
 div.topDiv {
@@ -165,8 +164,38 @@ div.topDiv {
     
 }
 
-.topP {
-    font-size: 70px;
+h1.panel2Header {
+	vertical-align: center;
+	color: white;
+	font-size: 80px;
+	margin-left: 10%;
+	text-align: left
+	width: 70%;
+}
+
+h1.panel3Header {
+	vertical-align: center;
+	color: #64B3DF;
+	font-size: 80px;
+	padding: 60px 60px;
+	margin-right: 6%;
+}
+
+p.topP {
+    font-size: 85px;
     width: 70%;
-    padding: 0px 220px;
+    height: 70%;
+    margin: auto;
+    color: #64B3DF;
+}
+
+p.secondP {
+    font-size: 25px;
+    width: 80%;
+    height: 20%;
+    margin: auto;
+}
+
+ol.list1 {
+	text-align:center;
 }
