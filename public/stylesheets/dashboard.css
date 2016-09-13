@@ -1,18 +1,60 @@
-ul.sidenav {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+nav.sidenav {
     width: 17%;
     background-color: black;
     position: fixed;
     height: 100%;
     overflow: auto;
+    display: none;
+    list-style-type: none;
+    text-align: center;
+    z-index: 1000;
+    opacity: 0.8;
+}
+
+nav {
+	position: fixed;
+    width: 17%;
+    background-color: #036;
+    height: 100%;
+    z-index: 1000;
+    list-style-type: none;
+    text-align: center;
+    opacity: 0.8;
+    display: table;
+    overflow: auto;
+}
+
+
+nav ul {
+	list-style: none;
+    margin-top: 100px;
+}
+
+nav ul li a {
+	text-decoration: none;
+    display: list-item;
+    text-align: center;
+    color: #fff;
+    padding: 10px 40px;
+}
+
+ul.sidenav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 17%;
+    min-width: 200px;
+    background-color: black;
+    position: fixed;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1000;
 }
 
 ul.sidenav li a {
     display: block;
     color: white;
-    padding: 8px 16px;
+    padding: 10px 40px;
     text-decoration: none;
 }
  
@@ -89,14 +131,15 @@ button {
 div.chartDiv {
 	display: flex;
   flex-wrap: wrap;
- 
 	margin-left: 17%;
+	
 }
 div.chartDiv2 {
 	display: flex;
-  flex-wrap: wrap;
- 
-	margin-left: 17%;
+  	flex-wrap: wrap;
+ 	text-align: center;
+	
+	
 }
 
 

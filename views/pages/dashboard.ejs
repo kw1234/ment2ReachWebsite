@@ -24,24 +24,52 @@
   <body>
   
 	<ul class="sidenav">
-  		<li><a href="/dashboard">Home</a></li>
-  		<li><a href="#news">Reflect</a></li>
-  		<li><a href="#contact">Progress</a></li>
-  		<li><a href="#about">Journal</a></li>
-  		<li><button id="logOutButton">Log Out</button></li>
+  		<li><a href="#news" style="width:100%">Reflect</a></li>
+  		<li><a href="/dashboard" style="width:100%"style="width:100%">Progress</a>
+  			<!--<ul>
+  				<li>mama </li>
+  				<li>papa </li>
+  			</ul>-->	
+  		</li>
+  		<li><a href="#about" style="width:100%">Journal</a></li>
+  		<li><button id="logOutButton" ">Log Out</button></li>
 	</ul>
+	<!--
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+            
+        </nav>-->
 
 
     <!-- chart 1-->
-    <div class="chartDiv">
-    <div id="dailyTotalChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
-    <div id="overallFeelingChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
-    <div id="breakfastChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
-    <div id="lunchChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
-    <div id="dinnerChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
-    <div id="studyChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
-    <div id="trainingChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
+    <div >
+    	<h1 style="margin-left: 17%;">IMPROVEMENT SCORES</h1>
     </div>
+    <div style="border:1px solid black;">
+        <h1 style="margin-left: 17%;">TIME ALLOCATION</h1>
+    	<div class="chartDiv2" style="margin-left: 30%">
+    		<div id="timePieChart" style="width: 800px; height: 581px; margin: 10px 10px"></div>
+    	</div>
+    </div>
+    <div style="border:1px solid black;">
+    	<h1 style="margin-left: 17%;">DAILY SCORE CHARTS</h1>
+    	<div class="chartDiv">
+    		<div id="dailyTotalChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
+   		 	<div id="overallFeelingChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
+    		<div id="breakfastChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
+    		<div id="lunchChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
+    		<div id="dinnerChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
+    		<div id="studyChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
+    		<div id="trainingChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
+    	</div>
+    </div>
+
+    <!--
     <div class="chartDiv2">
     <div id="dailyTotalChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
     <div id="overallFeelingChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
@@ -50,7 +78,7 @@
     <div id="dinnerChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
     <div id="studyChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
     <div id="trainingChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
-    </div>
+    </div>-->
     
     
     <!--<button id="logOutButton">Log Out</button>-->
@@ -141,7 +169,88 @@
 		return newDate;
 	  }
 	  
-	  function setChart(chartID, chartTitle, yAxisTitle, xAxisPoints, dataTitles, dataPointSeries) {
+	function setPieChart(chartID, chartTitle, yAxisTitle, xAxisPoints, dataTitles, dataPointSeries) {
+	  	var hashtagString = "#";
+	  	var containerID = hashtagString.concat(chartID);
+	  	console.log(containerID);
+	  	
+	  	var seriesList = []
+	  	//var title = dataTitles
+	  	//var data = dataPointSeries
+	  	//console.log(title)
+	  	//console.log(data)
+	  	for (index in dataTitles) {
+	  		var title = dataTitles[index];
+	  		var data = dataPointSeries[index];
+	  		console.log(title);
+	  		console.log(data);
+	  		seriesList.push({name: title,
+	  						 series: data});
+	  	}
+	  	//console.log("series list 1");
+	  	//console.log(seriesList);
+	  	
+	  	$(document).ready(function () {			
+	    	$(containerID).highcharts({
+    			credits: false,
+        		chart: {
+            		plotBackgroundColor: null,
+            		plotBorderWidth: null,
+            		plotShadow: false,
+            		type: 'pie'
+        		},
+        		title: {
+            		text: chartTitle,
+            		x:-20
+       			},
+        		tooltip: {
+            		pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        		},
+       			plotOptions: {
+           			pie: {
+                		allowPointSelect: true,
+                		cursor: 'pointer',
+                		dataLabels: {
+                    		enabled: true,
+                    		format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    		style: {
+                        		color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    		}	
+                		},
+                		showInLegend: true
+            		}
+        		},
+      			legend: {
+      				layout: 'vertical',
+      				align: 'right',
+    				verticalAlign: 'middle',
+  					borderWidth: 0
+    			},
+        		series: [{
+            		name: 'Time Allocation',
+            		colorByPoint: true,
+            		data: [
+            			{
+                			name: 'Sleep',
+                			y: dataPointSeries[0]
+            			}, {
+                			name: 'Study',
+                			y: dataPointSeries[1]
+            			}, {
+                			name: 'Training',
+                			y: dataPointSeries[2]
+            			}, {
+                			name: 'Other Priorities',
+                			y: dataPointSeries[3]
+            			}
+            		]
+        		}]
+    		});
+		});
+
+	  }
+	  
+	  function setLineChart(chartID, chartTitle, yAxisTitle, xAxisPoints, dataTitles, dataPointSeries) {
 	  	var hashtagString = "#";
 	  	var containerID = hashtagString.concat(chartID);
 	  	console.log(containerID);
@@ -238,6 +347,14 @@
 	  			var dinnerScoreList = [];
 	  			var studyingScoreList = [];
 	  			var trainingScoreList = [];
+	  			
+	  			var sleepHours = [];
+	  			var studyHours = [];
+	  			var trainingHours = [];
+
+				var weeklyImproveScores = [];
+				var monthlyImproveScores = [];
+				var yearlyImproveScores = [];
       			
       			if (snapshot.val()["Users"][userID] != null) {
       				//gets the user's values
@@ -255,8 +372,8 @@
 					});
 					//convertedDates.sort();
 					convertedDates.reverse();
-					console.log("them dates");
-					console.log(convertedDates);
+					//console.log("them dates");
+					//console.log(convertedDates);
 					//convert date objects back to date strings
 					for (index in convertedDates) {
 						var roughDate = convertedDates[index];
@@ -265,8 +382,8 @@
 						dates.add(date);
 						
 					}
-					console.log("dates");
-					console.log(dates);
+					//console.log("dates");
+					//console.log(dates);
 					
 					//for (let [key, value] of dates.entries()) console.log(value);
 					/*for (let [key, value] of dates.entries()) {
@@ -289,21 +406,101 @@
 							dinnerScoreList.push(scoresDict["dinner score"]);
 							studyingScoreList.push(scoresDict["studying score"]);
 							trainingScoreList.push(scoresDict["training score"]);
+							
+							var valuesDict = valDict[value]["survey values"];
+							sleepHours.push(valuesDict["hour slider"]);
+							studyHours.push(valuesDict["study box"]);
+							trainingHours.push(valuesDict["training box"]);
+
+
+							
 						} else {
 							dates.delete(value);
 						}
 					}
+					
+					console.log("sleep hours");
+					console.log(sleepHours);
+					console.log(studyHours);
+					console.log(trainingHours);
+					
+					var weekCount = dates.size-1 , monthCount = dates.size-1 , yearCount = dates.size-1;
+
+					var weeklyTimeScores= [0,0,0,0];
+					var monthlyTimeScores= [0,0,0,0];
+					var yearlyTimeScores= [0,0,0,0];
+							
+					if (dates.size < 7) {
+						for (i = 0; i < dates.size; i++) {
+                   			weeklyTimeScores[0] = sleepHours[i]/(dates.size);
+                    		weeklyTimeScores[1] += studyHours[i]/(dates.size);
+            				weeklyTimeScores[2] += trainingHours[i]/(dates.size);
+						}
+					} else {
+					    while (weekCount >= dates.size - 7) {
+							weeklyTimeScores[0] += sleepHours[weekCount]/7;
+             				weeklyTimeScores[1] += studyHours[weekCount]/7;
+         					weeklyTimeScores[2] += trainingHours[weekCount]/7;
+                
+    						weekCount -= 1;
+    				 	}
+					}
+					
+					if (dates.size < 30) {
+						for (i = 0; i < dates.size; i++) {
+                   			monthlyTimeScores[0] += sleepHours[i]/(dates.size);
+                    		monthlyTimeScores[1] += studyHours[i]/(dates.size);
+            				monthlyTimeScores[2] += trainingHours[i]/(dates.size);
+						}
+					} else {
+					    while (monthCount >= dates.size - 30) {
+							monthlyTimeScores[0] += sleepHours[monthCount]/30;
+             				monthlyTimeScores[1] += studyHours[monthCount]/30;
+         					monthlyTimeScores[2] += trainingHours[monthCount]/30;
+                
+    						monthCount -= 1;
+    				 	}
+					}
+					
+					if (dates.size < 365) {
+						for (i = 0; i < dates.size; i++) {
+                   			yearlyTimeScores[0] += sleepHours[i]/(dates.size);
+                    		yearlyTimeScores[1] += studyHours[i]/(dates.size);
+            				yearlyTimeScores[2] += trainingHours[i]/(dates.size);
+						}
+					} else {
+					    while (yearCount >= dates.size - 365) {
+							yearlyTimeScores[0] += sleepHours[yearCount]/365;
+             				yearlyTimeScores[1] += studyHours[yearCount]/365;
+         					yearlyTimeScores[2] += trainingHours[yearCount]/365;
+                
+    						yearCount -= 1;
+    				 	}
+					}
+					
+					weeklyTimeScores[3] = 24 - (weeklyTimeScores[0] + weeklyTimeScores[1] + weeklyTimeScores[2])
+            		monthlyTimeScores[3] = 24 - (monthlyTimeScores[0] + monthlyTimeScores[1] + monthlyTimeScores[2])
+            		yearlyTimeScores[3] = 24 - (yearlyTimeScores[0] + yearlyTimeScores[1] + yearlyTimeScores[2])
+							
+					console.log("weekly time scores");
+					console.log(weeklyTimeScores);
+					console.log("monthly time scores");
+					console.log(monthlyTimeScores);
+					console.log("yearly time scores");
+					console.log(yearlyTimeScores);
+					
+					setPieChart("timePieChart","Time Allocation", "Scores", Array.from(dates), "times", weeklyTimeScores);
 			
 					console.log("daily total list");
 					console.log(dailyTotalList);
 			
-					setChart("dailyTotalChart","Daily Score Totals", "Scores", Array.from(dates), "daily total", dailyTotalList);
-					setChart("overallFeelingChart","Overall Feeling Scores", "Scores", Array.from(dates), "overall feeling", overallFeelingList);
-					setChart("breakfastChart","Breakfast Scores", "Scores", Array.from(dates), "breakfast", breakfastScoreList);
-					setChart("lunchChart","Lunch Scores", "Scores", Array.from(dates), "lunch", lunchScoreList);
-					setChart("dinnerChart","Dinner Scores", "Scores", Array.from(dates), "dinner", dinnerScoreList);
-					setChart("studyChart","Study Scores", "Scores", Array.from(dates), "study", studyingScoreList);
-					setChart("trainingChart","Training Scores", "Scores", Array.from(dates), "training", trainingScoreList);
+					setLineChart("dailyTotalChart","Daily Score Totals", "Scores", Array.from(dates), "daily total", dailyTotalList);
+					setLineChart("overallFeelingChart","Overall Feeling Scores", "Scores", Array.from(dates), "overall feeling", overallFeelingList);
+					setLineChart("breakfastChart","Breakfast Scores", "Scores", Array.from(dates), "breakfast", breakfastScoreList);
+					setLineChart("lunchChart","Lunch Scores", "Scores", Array.from(dates), "lunch", lunchScoreList);
+					setLineChart("dinnerChart","Dinner Scores", "Scores", Array.from(dates), "dinner", dinnerScoreList);
+					setLineChart("studyChart","Study Scores", "Scores", Array.from(dates), "study", studyingScoreList);
+					setLineChart("trainingChart","Training Scores", "Scores", Array.from(dates), "training", trainingScoreList);
 			
       			}
       		});
