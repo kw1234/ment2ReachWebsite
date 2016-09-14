@@ -48,15 +48,15 @@
 
     <!-- chart 1-->
     <div >
-    	<h1 style="margin-left: 17%;">IMPROVEMENT SCORES</h1>
+    	<h1 style="margin-left: 17%; padding: 10px 0;">IMPROVEMENT SCORES</h1>
     </div>
-    <div style="border:1px solid black;">
+    <div style="border:1px solid black; padding: 10px 0;">
         <h1 style="margin-left: 17%;">TIME ALLOCATION</h1>
     	<div class="chartDiv2" style="margin-left: 30%">
     		<div id="timePieChart" style="width: 800px; height: 581px; margin: 10px 10px"></div>
     	</div>
     </div>
-    <div style="border:1px solid black;">
+    <div style="border:1px solid black; padding: 10px 0;">
     	<h1 style="margin-left: 17%;">DAILY SCORE CHARTS</h1>
     	<div class="chartDiv">
     		<div id="dailyTotalChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
@@ -351,10 +351,27 @@
 	  			var sleepHours = [];
 	  			var studyHours = [];
 	  			var trainingHours = [];
-
-				var weeklyImproveScores = [];
-				var monthlyImproveScores = [];
-				var yearlyImproveScores = [];
+	  			
+	  			var badSleepCount = 0;
+	  			var badSleepScores = [];
+	  			var badBreakfastCount = 0;
+	  			var badBreakfastScores = [];
+	  			var badLunchCount = 0;
+	  			var badLunchScores = [];
+	  			var badDinnerCount = 0;
+	  			var badDinnerScores = [];
+	  			var badAcademicFocusCount = 0;
+	  			var badAcademicFocusScores = [];
+	  			var badAcademicGoalCount = 0;
+	  			var badAcademicGoalScores = [];
+	  			var badAthleticFocusCount = 0;
+	  			var badAthleticFocusScores = [];
+	  			var badAthleticGoalCount = 0;
+	  			var badAthleticGoalScores = [];
+	  			var badOverallCount = 0;
+	  			var badOverallScores = [];
+	  			var badReflectionCount = 0;
+	  			var badReflectionScores = [];
       			
       			if (snapshot.val()["Users"][userID] != null) {
       				//gets the user's values
@@ -412,7 +429,31 @@
 							studyHours.push(valuesDict["study box"]);
 							trainingHours.push(valuesDict["training box"]);
 
-
+							var journalDict = valDict[value]["journal values"];
+                			badSleepCount += valuesDict["sleep quality"];
+                			badSleepScores.push(valuesDict["sleep quality"])
+                			badBreakfastCount += valuesDict["breakfast value"]
+                			badBreakfastScores.push(valuesDict["breakfast value"])
+                			badLunchCount += valuesDict["lunch value"]
+                			badLunchScores.push(valuesDict["lunch value"])
+                			badDinnerCount += valuesDict["dinner value"]
+                			badDinnerScores.push(valuesDict["dinner value"] )         
+                			badAcademicFocusCount += (valuesDict["study quality"] > 2 ? 1.0 : 0.0)
+                			badAcademicFocusScores.push(valuesDict["study quality"]  > 2 ? 1.0 : 0.0)
+                			badAcademicGoalCount += valuesDict["academic goal value"] 
+                			badAcademicGoalScores.push(valuesDict["academic goal value"] )
+                			badAthleticFocusCount += (valuesDict["training quality"]  > 2 ? 1.0 : 0.0)
+                			badAthleticFocusScores.push(valuesDict["training quality"] > 2 ? 1.0 : 0.0)
+                			badAthleticGoalCount += valuesDict["athletic goal value"] 
+                			badAthleticGoalScores.push(valuesDict["athletic goal value"] )
+                			badOverallCount += (valuesDict["overall feeling"]  >= 2 ? 1.0 : 0.0)
+                			badOverallScores.push(valuesDict["overall feeling"]  >= 2 ? 1.0 : 0.0)
+                			badReflectionCount += (((journalDict["challenges"]) == "" || (journalDict["goals achieved"]) == "" || 
+                									(journalDict["grateful for"]) == "" || (journalDict["learned"]) == "" || 
+                									(journalDict["tomm academic"]) == "" || (journalDict["tomm athletic"]) == "") ? 0.0 : 1.0)
+                			badReflectionScores.push(((journalDict["challenges"]) == ""|| (journalDict["goals achieved"])  == "" || 
+                									  (journalDict["grateful for"]) == ""|| (journalDict["learned"]) == "" 
+            										  || (journalDict["tomm academic"]) == "" || (journalDict["tomm athletic"]) == "") ? 0.0 : 1.0)
 							
 						} else {
 							dates.delete(value);
@@ -429,22 +470,66 @@
 					var weeklyTimeScores= [0,0,0,0];
 					var monthlyTimeScores= [0,0,0,0];
 					var yearlyTimeScores= [0,0,0,0];
+					
+					var weeklyImproveScores = [[0],[0,0,0],[0,0],[0,0],[0,0]];
+					var monthlyImproveScores = [[0],[0,0,0],[0,0],[0,0],[0,0]];
+					var yearlyImproveScores = [[0],[0,0,0],[0,0],[0,0],[0,0]];
+							
 							
 					if (dates.size < 7) {
 						for (i = 0; i < dates.size; i++) {
                    			weeklyTimeScores[0] = sleepHours[i]/(dates.size);
                     		weeklyTimeScores[1] += studyHours[i]/(dates.size);
             				weeklyTimeScores[2] += trainingHours[i]/(dates.size);
+            				
+            				weeklyImproveScores[0][0] += badSleepScores[i]/Double(dates.count)*100;
+                    		weeklyImproveScores[1][0] += badBreakfastScores[i]/Double(dates.count)*100;
+                    		weeklyImproveScores[1][1] += badLunchScores[i]/Double(dates.count)*100;
+                    		weeklyImproveScores[1][2] += badDinnerScores[i]/Double(dates.count)*100;
+                    		weeklyImproveScores[2][0] += badAcademicFocusScores[i]/Double(dates.count)*100;
+                    		weeklyImproveScores[2][1] += badAcademicGoalScores[i]/Double(dates.count)*100;
+                    		weeklyImproveScores[3][0] += badAthleticFocusScores[i]/Double(dates.count)*100;
+                    		weeklyImproveScores[3][1] += badAthleticGoalScores[i]/Double(dates.count)*100;
+                    		weeklyImproveScores[4][0] += badOverallScores[i]/Double(dates.count)*100;
+                    		weeklyImproveScores[4][1] += badReflectionScores[i]/Double(dates.count)*100;
 						}
 					} else {
+						console.log("mango");
 					    while (weekCount >= dates.size - 7) {
+					    
 							weeklyTimeScores[0] += sleepHours[weekCount]/7;
              				weeklyTimeScores[1] += studyHours[weekCount]/7;
          					weeklyTimeScores[2] += trainingHours[weekCount]/7;
+         					
+         					console.log("zone1");
+         					weeklyImproveScores[0][0] += badSleepScores[weekCount]/7*100;
+         					console.log("zone2");
+                    		weeklyImproveScores[1][0] += badBreakfastScores[weekCount]/7*100;
+                    		console.log("zone3");
+                    		weeklyImproveScores[1][1] += badLunchScores[weekCount]/7*100;
+                    		console.log("zone4");
+                    		weeklyImproveScores[1][2] += badDinnerScores[weekCount]/7*100;
+                    		console.log("zone5");
+                    		weeklyImproveScores[2][0] += badAcademicFocusScores[weekCount]/7*100;
+                    		console.log("zone6");
+                    		weeklyImproveScores[2][1] += badAcademicGoalScores[weekCount]/7*100;
+                    		console.log("zone7");
+                    		weeklyImproveScores[3][0] += badAthleticFocusScores[weekCount]/7*100;
+                    		console.log("seco7d man");
+                    		weeklyImproveScores[3][1] += badAthleticGoalScores[weekCount]/7*100;
+                    		console.log("seco8d man");
+                    		weeklyImproveScores[4][0] += badOverallScores[weekCount]/7*100;
+                    		console.log("seco9d man");
+                    		weeklyImproveScores[4][1] += badReflectionScores[weekCount]/7*100;
+                    		console.log("seco10d man");
                 
     						weekCount -= 1;
     				 	}
+    				 	
+						console.log("tango");
 					}
+					console.log("weekly improve");
+					console.log(weeklyImproveScores);
 					
 					if (dates.size < 30) {
 						for (i = 0; i < dates.size; i++) {
@@ -481,18 +566,12 @@
 					weeklyTimeScores[3] = 24 - (weeklyTimeScores[0] + weeklyTimeScores[1] + weeklyTimeScores[2])
             		monthlyTimeScores[3] = 24 - (monthlyTimeScores[0] + monthlyTimeScores[1] + monthlyTimeScores[2])
             		yearlyTimeScores[3] = 24 - (yearlyTimeScores[0] + yearlyTimeScores[1] + yearlyTimeScores[2])
+            		
+            			  			
 							
-					console.log("weekly time scores");
-					console.log(weeklyTimeScores);
-					console.log("monthly time scores");
-					console.log(monthlyTimeScores);
-					console.log("yearly time scores");
-					console.log(yearlyTimeScores);
+					
 					
 					setPieChart("timePieChart","Time Allocation", "Scores", Array.from(dates), "times", weeklyTimeScores);
-			
-					console.log("daily total list");
-					console.log(dailyTotalList);
 			
 					setLineChart("dailyTotalChart","Daily Score Totals", "Scores", Array.from(dates), "daily total", dailyTotalList);
 					setLineChart("overallFeelingChart","Overall Feeling Scores", "Scores", Array.from(dates), "overall feeling", overallFeelingList);
