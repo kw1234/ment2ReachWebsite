@@ -202,7 +202,7 @@
             		text: ''
         		},
         		xAxis: {
-            		categories: ["a","b","c","d","e"],
+            		categories: ["Sleep","Nutrition","Academics","Athletics","Reflection"],
             		title: {
                 		text: null
             		}
@@ -230,10 +230,10 @@
         		},
         		legend: {
             		layout: 'vertical',
-            		align: 'right',
+            		align: 'left',
             		verticalAlign: 'top',
-            		x: -40,
-            		y: 80,
+            		x: 680,
+            		y: 430,
             		floating: true,
             		borderWidth: 1,
             		backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
@@ -243,19 +243,19 @@
             		enabled: false
         		},
         		series: [{
-					name: "1",
+					name: "Sleep",
             		data: dataPointSeries[0]
         		}, {
-            		name: '2',
+            		name: 'Nutrition',
             		data: dataPointSeries[1]
         		}, {
-            		name: '3',
+            		name: 'Academics',
             		data: dataPointSeries[2]
         		}, {
-        			name: '4',
+        			name: 'Athletics',
             		data: dataPointSeries[3]
         		}, {
-        			name: '5',
+        			name: 'Reflection',
             		data: dataPointSeries[4]
         		}]
     		});
