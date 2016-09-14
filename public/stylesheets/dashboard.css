@@ -57,6 +57,13 @@ ul.sidenav li a {
     padding: 10px 40px;
     text-decoration: none;
 }
+
+ul.sidenav li button {
+    display: block;
+    color: white;
+    text-decoration: none;
+    padding: 10px 80px;
+}
  
 ul.sidenav li a.active {
     background-color: #4CAF50;

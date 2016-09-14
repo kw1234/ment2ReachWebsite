@@ -24,15 +24,15 @@
   <body>
   
 	<ul class="sidenav">
-  		<li><a href="#news" style="width:100%">Reflect</a></li>
-  		<li><a href="/dashboard" style="width:100%"style="width:100%">Progress</a>
+  		<li><a href="#Reflect" style="width:100%">Reflect</a></li>
+  		<li><a href="/dashboard" style="width:100%">Progress</a>
   			<!--<ul>
   				<li>mama </li>
   				<li>papa </li>
   			</ul>-->	
   		</li>
-  		<li><a href="#about" style="width:100%">Journal</a></li>
-  		<li><button id="logOutButton" ">Log Out</button></li>
+  		<li><a href="#Journal" style="width:100%">Journal</a></li>
+  		<li><button id="logOutButton" style="width:100%; text-align:center;">Log Out</button></li>
 	</ul>
 	<!--
         <nav>
@@ -49,10 +49,13 @@
     <!-- chart 1-->
     <div >
     	<h1 style="margin-left: 17%; padding: 10px 0;">IMPROVEMENT SCORES</h1>
+    	<div class="chartDiv" style="margin-left: 30%">
+    		<div id="improvementBarChart" style="width: 800px; height: 581px; margin: 10px 10px"></div>
+    	</div>
     </div>
     <div style="border:1px solid black; padding: 10px 0;">
         <h1 style="margin-left: 17%;">TIME ALLOCATION</h1>
-    	<div class="chartDiv2" style="margin-left: 30%">
+    	<div class="chartDiv" style="margin-left: 30%">
     		<div id="timePieChart" style="width: 800px; height: 581px; margin: 10px 10px"></div>
     	</div>
     </div>
@@ -167,6 +170,97 @@
 			}
 		}
 		return newDate;
+	  }
+	
+	function setBarChart(chartID, chartTitle, yAxisTitle, xAxisPoints, dataTitles, dataPointSeries) {
+	  	var hashtagString = "#";
+	  	var containerID = hashtagString.concat(chartID);
+	  	console.log(containerID);
+	  	
+	  	var seriesList = []
+	  	//var title = dataTitles
+	  	//var data = dataPointSeries
+	  	//console.log(title)
+	  	//console.log(data)
+	  	for (index in dataTitles) {
+	  		var title = dataTitles[index];
+	  		var data = dataPointSeries[index];
+	  		console.log(title);
+	  		console.log(data);
+	  		seriesList.push({name: title,
+	  						 series: data});
+	  	}
+	  	//console.log("series list 1");
+	  	//console.log(seriesList);
+	  	
+	  	$(document).ready(function () {			
+	    	$(containerID).highcharts({
+    			chart: {
+            		type: 'bar'
+       			},
+        		title: {
+            		text: ''
+        		},
+        		xAxis: {
+            		categories: ["a","b","c","d","e"],
+            		title: {
+                		text: null
+            		}
+        		},
+        		yAxis: {
+            		min: 0,
+            		max: 100,
+            		title: {
+                		text: 'Percentage',
+                		align: 'high'
+            		},
+            		labels: {
+                		overflow: 'justify'
+            		}
+        		},
+        		tooltip: {
+            		valueSuffix: ' millions'
+        		},
+        		plotOptions: {
+            		bar: {
+                		dataLabels: {
+                    		enabled: true
+                		}
+            		}
+        		},
+        		legend: {
+            		layout: 'vertical',
+            		align: 'right',
+            		verticalAlign: 'top',
+            		x: -40,
+            		y: 80,
+            		floating: true,
+            		borderWidth: 1,
+            		backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+            		shadow: true
+        		},
+        		credits: {
+            		enabled: false
+        		},
+        		series: [{
+					name: "1",
+            		data: dataPointSeries[0]
+        		}, {
+            		name: '2',
+            		data: dataPointSeries[1]
+        		}, {
+            		name: '3',
+            		data: dataPointSeries[2]
+        		}, {
+        			name: '4',
+            		data: dataPointSeries[3]
+        		}, {
+        			name: '5',
+            		data: dataPointSeries[4]
+        		}]
+    		});
+		});
+
 	  }
 	  
 	function setPieChart(chartID, chartTitle, yAxisTitle, xAxisPoints, dataTitles, dataPointSeries) {
@@ -482,16 +576,16 @@
                     		weeklyTimeScores[1] += studyHours[i]/(dates.size);
             				weeklyTimeScores[2] += trainingHours[i]/(dates.size);
             				
-            				weeklyImproveScores[0][0] += badSleepScores[i]/Double(dates.count)*100;
-                    		weeklyImproveScores[1][0] += badBreakfastScores[i]/Double(dates.count)*100;
-                    		weeklyImproveScores[1][1] += badLunchScores[i]/Double(dates.count)*100;
-                    		weeklyImproveScores[1][2] += badDinnerScores[i]/Double(dates.count)*100;
-                    		weeklyImproveScores[2][0] += badAcademicFocusScores[i]/Double(dates.count)*100;
-                    		weeklyImproveScores[2][1] += badAcademicGoalScores[i]/Double(dates.count)*100;
-                    		weeklyImproveScores[3][0] += badAthleticFocusScores[i]/Double(dates.count)*100;
-                    		weeklyImproveScores[3][1] += badAthleticGoalScores[i]/Double(dates.count)*100;
-                    		weeklyImproveScores[4][0] += badOverallScores[i]/Double(dates.count)*100;
-                    		weeklyImproveScores[4][1] += badReflectionScores[i]/Double(dates.count)*100;
+            				weeklyImproveScores[0][0] += badSleepScores[i]/(dates.size)*100;
+                    		weeklyImproveScores[1][0] += badBreakfastScores[i]/(dates.size)*100;
+                    		weeklyImproveScores[1][1] += badLunchScores[i]/(dates.size)*100;
+                    		weeklyImproveScores[1][2] += badDinnerScores[i]/(dates.size)*100;
+                    		weeklyImproveScores[2][0] += badAcademicFocusScores[i]/(dates.size)*100;
+                    		weeklyImproveScores[2][1] += badAcademicGoalScores[i]/(dates.size)*100;
+                    		weeklyImproveScores[3][0] += badAthleticFocusScores[i]/(dates.size)*100;
+                    		weeklyImproveScores[3][1] += badAthleticGoalScores[i]/(dates.size)*100;
+                    		weeklyImproveScores[4][0] += badOverallScores[i]/(dates.size)*100;
+                    		weeklyImproveScores[4][1] += badReflectionScores[i]/(dates.size)*100;
 						}
 					} else {
 						console.log("mango");
@@ -501,27 +595,16 @@
              				weeklyTimeScores[1] += studyHours[weekCount]/7;
          					weeklyTimeScores[2] += trainingHours[weekCount]/7;
          					
-         					console.log("zone1");
          					weeklyImproveScores[0][0] += badSleepScores[weekCount]/7*100;
-         					console.log("zone2");
                     		weeklyImproveScores[1][0] += badBreakfastScores[weekCount]/7*100;
-                    		console.log("zone3");
                     		weeklyImproveScores[1][1] += badLunchScores[weekCount]/7*100;
-                    		console.log("zone4");
                     		weeklyImproveScores[1][2] += badDinnerScores[weekCount]/7*100;
-                    		console.log("zone5");
                     		weeklyImproveScores[2][0] += badAcademicFocusScores[weekCount]/7*100;
-                    		console.log("zone6");
                     		weeklyImproveScores[2][1] += badAcademicGoalScores[weekCount]/7*100;
-                    		console.log("zone7");
                     		weeklyImproveScores[3][0] += badAthleticFocusScores[weekCount]/7*100;
-                    		console.log("seco7d man");
                     		weeklyImproveScores[3][1] += badAthleticGoalScores[weekCount]/7*100;
-                    		console.log("seco8d man");
                     		weeklyImproveScores[4][0] += badOverallScores[weekCount]/7*100;
-                    		console.log("seco9d man");
                     		weeklyImproveScores[4][1] += badReflectionScores[weekCount]/7*100;
-                    		console.log("seco10d man");
                 
     						weekCount -= 1;
     				 	}
@@ -536,12 +619,35 @@
                    			monthlyTimeScores[0] += sleepHours[i]/(dates.size);
                     		monthlyTimeScores[1] += studyHours[i]/(dates.size);
             				monthlyTimeScores[2] += trainingHours[i]/(dates.size);
+            				
+            				monthlyImproveScores[0][0] += badSleepScores[i]/(dates.size)*100;
+                    		monthlyImproveScores[1][0] += badBreakfastScores[i]/(dates.size)*100;
+                    		monthlyImproveScores[1][1] += badLunchScores[i]/(dates.size)*100;
+                    		monthlyImproveScores[1][2] += badDinnerScores[i]/(dates.size)*100;
+                    		monthlyImproveScores[2][0] += badAcademicFocusScores[i]/(dates.size)*100;
+                    		monthlyImproveScores[2][1] += badAcademicGoalScores[i]/(dates.size)*100;
+                    		monthlyImproveScores[3][0] += badAthleticFocusScores[i]/(dates.size)*100;
+                    		monthlyImproveScores[3][1] += badAthleticGoalScores[i]/(dates.size)*100;
+                    		monthlyImproveScores[4][0] += badOverallScores[i]/(dates.size)*100;
+                    		monthlyImproveScores[4][1] += badReflectionScores[i]/(dates.size)*100;
+            				
 						}
 					} else {
 					    while (monthCount >= dates.size - 30) {
 							monthlyTimeScores[0] += sleepHours[monthCount]/30;
              				monthlyTimeScores[1] += studyHours[monthCount]/30;
          					monthlyTimeScores[2] += trainingHours[monthCount]/30;
+         					
+         					monthlyImproveScores[0][0] += badSleepScores[monthCount]/30*100;
+                    		monthlyImproveScores[1][0] += badBreakfastScores[monthCount]/30*100;
+                    		monthlyImproveScores[1][1] += badLunchScores[monthCount]/30*100;
+                    		monthlyImproveScores[1][2] += badDinnerScores[monthCount]/30*100;
+                    		monthlyImproveScores[2][0] += badAcademicFocusScores[monthCount]/30*100;
+                    		monthlyImproveScores[2][1] += badAcademicGoalScores[monthCount]/30*100;
+                    		monthlyImproveScores[3][0] += badAthleticFocusScores[monthCount]/30*100;
+                    		monthlyImproveScores[3][1] += badAthleticGoalScores[monthCount]/30*100;
+                    		monthlyImproveScores[4][0] += badOverallScores[monthCount]/30*100;
+                    		monthlyImproveScores[4][1] += badReflectionScores[monthCount]/30*100;
                 
     						monthCount -= 1;
     				 	}
@@ -552,12 +658,34 @@
                    			yearlyTimeScores[0] += sleepHours[i]/(dates.size);
                     		yearlyTimeScores[1] += studyHours[i]/(dates.size);
             				yearlyTimeScores[2] += trainingHours[i]/(dates.size);
+            				
+            				yearlyImproveScores[0][0] += badSleepScores[i]/(dates.size)*100;
+                    		yearlyImproveScores[1][0] += badBreakfastScores[i]/(dates.size)*100;
+                    		yearlyImproveScores[1][1] += badLunchScores[i]/(dates.size)*100;
+                    		yearlyImproveScores[1][2] += badDinnerScores[i]/(dates.size)*100;
+                    		yearlyImproveScores[2][0] += badAcademicFocusScores[i]/(dates.size)*100;
+                    		yearlyImproveScores[2][1] += badAcademicGoalScores[i]/(dates.size)*100;
+                    		yearlyImproveScores[3][0] += badAthleticFocusScores[i]/(dates.size)*100;
+                    		yearlyImproveScores[3][1] += badAthleticGoalScores[i]/(dates.size)*100;
+                    		yearlyImproveScores[4][0] += badOverallScores[i]/(dates.size)*100;
+                    		yearlyImproveScores[4][1] += badReflectionScores[i]/(dates.size)*100;
 						}
 					} else {
 					    while (yearCount >= dates.size - 365) {
 							yearlyTimeScores[0] += sleepHours[yearCount]/365;
              				yearlyTimeScores[1] += studyHours[yearCount]/365;
          					yearlyTimeScores[2] += trainingHours[yearCount]/365;
+         					
+         					yearlyImproveScores[0][0] += badSleepScores[yearCount]/365*100;
+                    		yearlyImproveScores[1][0] += badBreakfastScores[yearCount]/365*100;
+                    		yearlyImproveScores[1][1] += badLunchScores[yearCount]/365*100;
+                    		yearlyImproveScores[1][2] += badDinnerScores[yearCount]/365*100;
+                    		yearlyImproveScores[2][0] += badAcademicFocusScores[yearCount]/365*100;
+                    		yearlyImproveScores[2][1] += badAcademicGoalScores[yearCount]/365*100;
+                    		yearlyImproveScores[3][0] += badAthleticFocusScores[yearCount]/365*100;
+                    		yearlyImproveScores[3][1] += badAthleticGoalScores[yearCount]/365*100;
+                    		yearlyImproveScores[4][0] += badOverallScores[yearCount]/365*100;
+                    		yearlyImproveScores[4][1] += badReflectionScores[yearCount]/365*100;
                 
     						yearCount -= 1;
     				 	}
@@ -569,7 +697,7 @@
             		
             			  			
 							
-					
+					setBarChart("improvementBarChart","Improvement Scores", "Scores", Array.from(dates), "improvement", weeklyImproveScores);
 					
 					setPieChart("timePieChart","Time Allocation", "Scores", Array.from(dates), "times", weeklyTimeScores);
 			
