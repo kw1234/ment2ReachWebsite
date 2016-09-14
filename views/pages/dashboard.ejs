@@ -202,7 +202,7 @@
             		text: ''
         		},
         		xAxis: {
-            		categories: ["Sleep","Nutrition","Academics","Athletics","Reflection"],
+            		categories: ["Nutrition","Academics","Athletics","Reflection","Sleep"],
             		title: {
                 		text: null
             		}
@@ -243,20 +243,15 @@
             		enabled: false
         		},
         		series: [{
-					name: "Sleep",
-            		data: dataPointSeries[0]
+					name: "",
+            		data: [dataPointSeries[1][0],dataPointSeries[2][0],dataPointSeries[3][0],dataPointSeries[4][0],
+            				dataPointSeries[0][0]]
         		}, {
-            		name: 'Nutrition',
-            		data: dataPointSeries[1]
+            		name: '',
+            		data: [dataPointSeries[1][1],dataPointSeries[2][1],dataPointSeries[3][1],dataPointSeries[4][1]]
         		}, {
-            		name: 'Academics',
-            		data: dataPointSeries[2]
-        		}, {
-        			name: 'Athletics',
-            		data: dataPointSeries[3]
-        		}, {
-        			name: 'Reflection',
-            		data: dataPointSeries[4]
+            		name: '',
+            		data: [dataPointSeries[1][2]]
         		}]
     		});
 		});
