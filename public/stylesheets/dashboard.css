@@ -79,7 +79,7 @@ ul.sidenav li a:hover:not(.active) {
 body {
     vertical-align: middle;
     background-color: #F5F5F5;
-    font-family: Futura, serif;
+    font-family: 'Oswald', sans-serif;
 }
 
 #leftHeader {
@@ -108,6 +108,7 @@ button {
     background-color: black;
     color: white;
     font-size: 15px;
+    font-family: 'Oswald', sans-serif;
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
