@@ -29,7 +29,7 @@ li a {
 
 li a.signUp {
     display: block;
-    color: #64B3DF;
+    color: black;
     background-color: white;
     text-align: center;
     margin:0;
@@ -43,7 +43,7 @@ li a:hover {
 }
 
 body {
-    font-family: Futura, serif;
+    font-family: 'Oswald', sans-serif;
     padding:0;
     margin: 0;
     text-align: center;
@@ -59,6 +59,15 @@ h1 {
     display:inline;
 }
 
+#grad1 {
+    height: 200px;
+    background: red; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(left top, red, yellow); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(bottom right, red, yellow); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(bottom right, red, yellow); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to bottom right, red, yellow); /* Standard syntax (must be last) */
+}
+
 
 #leftHeader {
     font-size: 32px;
@@ -66,7 +75,7 @@ h1 {
     margin:0;
     padding:0;
     display:inline;
-    color:#64B3DF;
+    color:#ECB342;
 }
 
 #leftHeaderli {
@@ -79,7 +88,7 @@ h1 {
     padding: 0;
     float:right;
     color: white;
-    background-color: #64B3DF;
+    background-color: #ECB342;
 }
 
 #signupli {
@@ -110,7 +119,7 @@ div.parallax {
 
 div.parallax2 { 
 	    /* The image used */
-    background-image: url(https://d3thflcq1yqzn0.cloudfront.net/023616330_prevstill.jpeg);
+   	background-color: #333;
 
     /* Set a specific height */
     min-height: 350px;
@@ -140,7 +149,7 @@ div.parallax3 {
 
 div.parallax4 { 
 	    /* The image used */
-    background-image: url(http://www.braveheartsadventures.org.au/images/pictures/large/LAA.jpg);
+    background-color: #333;
 
     /* Set a specific height */
     min-height: 350px;
@@ -166,7 +175,7 @@ div.topDiv {
 
 h1.panel2Header {
 	vertical-align: center;
-	color: white;
+	color: #ECB342;
 	font-size: 80px;
 	margin-left: 10%;
 	text-align: left
@@ -175,7 +184,7 @@ h1.panel2Header {
 
 h1.panel3Header {
 	vertical-align: center;
-	color: #64B3DF;
+	color: white;
 	font-size: 80px;
 	padding: 60px 60px;
 	margin-right: 6%;
@@ -186,7 +195,6 @@ p.topP {
     width: 70%;
     height: 70%;
     margin: auto;
-    color: #64B3DF;
 }
 
 p.secondP {
@@ -194,6 +202,15 @@ p.secondP {
     width: 80%;
     height: 20%;
     margin: auto;
+    color: #ECB342;
+}
+
+p.thirdP {
+    font-size: 25px;
+    width: 80%;
+    height: 20%;
+    margin: auto;
+    color: white;
 }
 
 ol.list1 {
