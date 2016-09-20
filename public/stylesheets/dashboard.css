@@ -1,41 +1,14 @@
-nav.sidenav {
+div.sidenav {
+	list-style-type: none;
+    margin: 0;
+    padding: 0;
     width: 17%;
+    min-width: 250px;
     background-color: black;
     position: fixed;
     height: 100%;
-    overflow: auto;
-    display: none;
-    list-style-type: none;
-    text-align: center;
+    overflow: hidden;
     z-index: 1000;
-    opacity: 0.8;
-}
-
-nav {
-	position: fixed;
-    width: 17%;
-    background-color: #036;
-    height: 100%;
-    z-index: 1000;
-    list-style-type: none;
-    text-align: center;
-    opacity: 0.8;
-    display: table;
-    overflow: auto;
-}
-
-
-nav ul {
-	list-style: none;
-    margin-top: 100px;
-}
-
-nav ul li a {
-	text-decoration: none;
-    display: list-item;
-    text-align: center;
-    color: #fff;
-    padding: 10px 40px;
 }
 
 ul.sidenav {
@@ -43,7 +16,7 @@ ul.sidenav {
     margin: 0;
     padding: 0;
     width: 17%;
-    min-width: 200px;
+    min-width: 250px;
     background-color: black;
     position: fixed;
     height: 100%;
@@ -114,7 +87,7 @@ button {
     border: none;
     cursor: pointer;
     width: 100px;
-    text-align:center;
+    text-align:left;
     
 
 }

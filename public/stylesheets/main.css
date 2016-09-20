@@ -52,6 +52,21 @@ body {
     max-width:100%;
 }
 
+button {
+    background-color: #333;
+    color: white;
+    font-size: 15px;
+    font-family: 'Oswald', sans-serif;
+    padding: 7px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100px;
+    text-align:left;
+    
+
+}
+
 h1 {
     font-size: 32px;
     margin:0;
@@ -76,11 +91,13 @@ h1 {
     padding:0;
     display:inline;
     color:#ECB342;
+    background-image: url(https://s3-us-west-2.amazonaws.com/ment2reachwebsiteimages/Ment2ReachCroppedLogo.png);
 }
 
 #leftHeaderli {
     margin:0;
-    padding: 2px 16px;
+    padding: 30px 125px;
+    background-image: url(https://s3-us-west-2.amazonaws.com/ment2reachwebsiteimages/Ment2ReachCroppedLogo.png);
 }
 
 #loginli {
