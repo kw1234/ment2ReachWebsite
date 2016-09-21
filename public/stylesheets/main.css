@@ -9,7 +9,7 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: #212121;
 }
 
 li {
@@ -53,7 +53,7 @@ body {
 }
 
 button {
-    background-color: #333;
+    background-color: #212121;
     color: white;
     font-size: 15px;
     font-family: 'Oswald', sans-serif;
@@ -136,7 +136,7 @@ div.parallax {
 
 div.parallax2 { 
 	    /* The image used */
-   	background-color: #333;
+   	background-color: #212121;
 
     /* Set a specific height */
     min-height: 350px;
@@ -166,7 +166,7 @@ div.parallax3 {
 
 div.parallax4 { 
 	    /* The image used */
-    background-color: #333;
+    background-color: #212121;
 
     /* Set a specific height */
     min-height: 350px;
