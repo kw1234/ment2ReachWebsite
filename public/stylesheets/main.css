@@ -3,8 +3,14 @@ header{
     margin:0;
 }
 
+ol {
+	margin-left: 13%;
+	font-size: 32px;
+	color: white;
+	width: 100%;
+}
 
-ul {
+ul.topNavBar {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -204,10 +210,10 @@ h1.panel2Header {
 
 h1.panel3Header {
 	vertical-align: center;
-	color: white;
+	color: #ECB342;
 	font-size: 80px;
 	padding: 60px 60px;
-	margin-right: 6%;
+	margin-left: 6%;
 }
 
 p.topP {
