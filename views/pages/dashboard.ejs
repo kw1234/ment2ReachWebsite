@@ -23,17 +23,12 @@
   </head>
   <body>
   
-  	<div class="sidenav">
+  	<div>
 	<ul class="sidenav">
   		<li><a href="#Reflect" style="width:100%; text-align: left;">Reflect</a></li>
-  		<li><a href="/dashboard" style="width:100%; text-align: left;">Progress</a>
-  			<!--<ul>
-  				<li>mama </li>
-  				<li>papa </li>
-  			</ul>-->	
-  		</li>
+  		<li><a href="/dashboard" style="width:100%; text-align: left;">Progress</a></li>
   		<li><a href="#Journal" style="width:100%; text-align: left;">Journal</a></li>
-  		<li><button id="logOutButton" style="width:100%; text-align: left;">Log Out</button></li>
+  		<li><button id="logOutButton" style="width: 100px; text-align: left;">Log Out</button></li>
 	</ul>
 	</div>
 	<!--
@@ -49,21 +44,27 @@
 
 
     <!-- chart 1-->
-    <div style="border:1px solid black; padding: 10px 0;" >
-    	<h1 style="margin-left: 17%; ">IMPROVEMENT SCORES</h1>
+    <div style="padding: 0 0;" >
+    	<div style="margin-left: 10%; background-color: black; color: white; width: 100%">
+    		<h1>IMPROVEMENT SCORES</h1>
+     	</div>
     	<div class="chartDiv" style="margin-left: 30%">
     		<div id="improvementBarChart" style="width: 800px; height: 581px; margin: 10px 10px"></div>
     	</div>
     </div>
-    <div style="border:1px solid black; padding: 10px 0;">
-        <h1 style="margin-left: 17%;">TIME ALLOCATION</h1>
+    <div style="padding: 10px 0;">
+        <div style="margin-left: 10%; background-color: black; color: white; width: 100%">
+    		<h1>TIME ALLOCATION</h1>
+    	</div>
     	<div class="chartDiv" style="margin-left: 30%">
     		<div id="timePieChart" style="width: 800px; height: 581px; margin: 10px 10px"></div>
     	</div>
     </div>
-    <div style="border:1px solid black; padding: 10px 0;">
-    	<h1 style="margin-left: 17%;">DAILY SCORE CHARTS</h1>
-    	<div class="chartDiv">
+    <div style="padding: 10px 0;">
+    	<div style="margin-left: 10%; background-color: black; color: white; width: 100%">
+    	<h1 >DAILY TRENDS</h1>
+    	</div>
+    	<div class="chartDiv" style="margin-left: 19%">
     		<div id="dailyTotalChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
    		 	<div id="overallFeelingChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
     		<div id="foodChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
@@ -766,7 +767,7 @@
 							
 					setBarChart("improvementBarChart","Improvement Scores", "Scores", Array.from(dates), "improvement", weeklyImproveScores);
 					
-					setPieChart("timePieChart","Time Allocation", "Scores", Array.from(dates), "times", weeklyTimeScores);
+					setPieChart("timePieChart","", "Scores", Array.from(dates), "times", weeklyTimeScores);
 			
 					setLineChart("dailyTotalChart","Daily Score Totals", "Scores", Array.from(dates), "daily total", dailyTotalList);
 					setLineChart("overallFeelingChart","Overall Feeling Scores", "Scores", Array.from(dates), "overall feeling", overallFeelingList);

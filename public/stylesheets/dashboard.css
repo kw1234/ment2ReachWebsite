@@ -1,22 +1,22 @@
-div.sidenav {
+/*div.sidenav {
 	list-style-type: none;
     margin: 0;
     padding: 0;
-    width: 17%;
-    min-width: 250px;
+    width: 15%;
+    min-width: 215px;
     background-color: black;
     position: fixed;
     height: 100%;
     overflow: hidden;
     z-index: 1000;
-}
+}*/
 
 ul.sidenav {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    width: 17%;
-    min-width: 250px;
+    width: 15%;
+    min-width: 215px;
     background-color: black;
     position: fixed;
     height: 100%;
@@ -31,12 +31,7 @@ ul.sidenav li a {
     text-decoration: none;
 }
 
-ul.sidenav li button {
-    display: block;
-    color: white;
-    text-decoration: none;
-    padding: 10px 80px;
-}
+
  
 ul.sidenav li a.active {
     background-color: #4CAF50;
@@ -82,12 +77,12 @@ button {
     color: white;
     font-size: 15px;
     font-family: 'Oswald', sans-serif;
-    padding: 14px 20px;
+    padding: 10px 20px;
     margin: 8px 0;
-    border: none;
     cursor: pointer;
     width: 100px;
-    text-align:left;
+    min-width: 100px;
+    text-align: left;
     
 
 }
@@ -112,13 +107,14 @@ button {
 div.chartDiv {
 	display: flex;
   flex-wrap: wrap;
-	margin-left: 17%;
+	margin-left: 15%;
 	
 }
 div.chartDiv2 {
 	display: flex;
   	flex-wrap: wrap;
  	text-align: center;
+ 	margin-left: 15%;
 	
 	
 }
