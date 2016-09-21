@@ -66,9 +66,7 @@
     	<div class="chartDiv">
     		<div id="dailyTotalChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
    		 	<div id="overallFeelingChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
-    		<div id="breakfastChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
-    		<div id="lunchChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
-    		<div id="dinnerChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
+    		<div id="foodChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
     		<div id="studyChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
     		<div id="trainingChart" style="width: 550px; height: 400px; margin: 10px 10px"></div>
     	</div>
@@ -404,6 +402,78 @@
       			});
       		});
 	  }
+	  
+	  function setLineChartMultiple(chartID, chartTitle, yAxisTitle, xAxisPoints, dataTitles, dataPointSeries) {
+	  	var hashtagString = "#";
+	  	var containerID = hashtagString.concat(chartID);
+	  	console.log(containerID);
+	  	
+	  	var seriesList = []
+	  	//var title = dataTitles
+	  	//var data = dataPointSeries
+	  	//console.log(title)
+	  	//console.log(data)
+	  	for (index in dataTitles) {
+	  		var title = dataTitles[index];
+	  		var data = dataPointSeries[index];
+	  		console.log(title);
+	  		console.log(data);
+	  		seriesList.push({name: title,
+	  						 series: data});
+	  	}
+	  	//console.log("series list 1");
+	  	//console.log(seriesList);
+	  
+	  	$(document).ready(function () {
+	  			
+	  			//console.log("series list 2");
+	  			//console.log(seriesList);
+	  	
+      			$(containerID).highcharts({
+      			credits: false,
+      				title: {
+      					text: chartTitle,
+      					x: -20 //center
+      				},
+      				xAxis: {
+      					categories: xAxisPoints
+      				},
+      				yAxis: {
+      					title: {
+      						text: yAxisTitle
+      					},
+      					plotLines: [{
+      						value: 0,
+      						width: 1,
+      						color: '#808080'
+      					}]
+      				},
+      				tooltip: {
+      					valueSuffix: ''
+      				},
+      				legend: {
+      					layout: 'vertical',
+      					align: 'right',
+      					verticalAlign: 'middle',
+      					borderWidth: 0
+      				},
+     				series: [
+     					{
+     						name: dataTitles[0],
+     						data: dataPointSeries[0]
+     					},
+     					{
+     						name: dataTitles[1],
+     						data: dataPointSeries[1]
+     					},
+     					{
+     						name: dataTitles[2],
+     						data: dataPointSeries[2]
+     					}
+     				]
+      			});
+      		});
+	  }
         
 
 	  /*var valDict = {};
@@ -700,9 +770,9 @@
 			
 					setLineChart("dailyTotalChart","Daily Score Totals", "Scores", Array.from(dates), "daily total", dailyTotalList);
 					setLineChart("overallFeelingChart","Overall Feeling Scores", "Scores", Array.from(dates), "overall feeling", overallFeelingList);
-					setLineChart("breakfastChart","Breakfast Scores", "Scores", Array.from(dates), "breakfast", breakfastScoreList);
-					setLineChart("lunchChart","Lunch Scores", "Scores", Array.from(dates), "lunch", lunchScoreList);
-					setLineChart("dinnerChart","Dinner Scores", "Scores", Array.from(dates), "dinner", dinnerScoreList);
+					setLineChartMultiple("foodChart","Nutrition Scores", "Scores", Array.from(dates), ["breakfast","lunch","dinner"], [breakfastScoreList,lunchScoreList,dinnerScoreList]);
+					//setLineChart("lunchChart","Lunch Scores", "Scores", Array.from(dates), "lunch", lunchScoreList);
+					//setLineChart("dinnerChart","Dinner Scores", "Scores", Array.from(dates), "dinner", dinnerScoreList);
 					setLineChart("studyChart","Study Scores", "Scores", Array.from(dates), "study", studyingScoreList);
 					setLineChart("trainingChart","Training Scores", "Scores", Array.from(dates), "training", trainingScoreList);
 			
