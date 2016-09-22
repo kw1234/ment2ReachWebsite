@@ -10,6 +10,10 @@ ol {
 	width: 100%;
 }
 
+ol.process {
+	white-space: nowrap;
+}
+
 ul.topNavBar {
     list-style-type: none;
     margin: 0;
@@ -50,6 +54,12 @@ li a.signUp {
 li a:hover {
     background-color: #111;
 }
+
+ol li.process {
+	display: inline-block;
+}
+
+
 
 body {
     font-family: 'Oswald', sans-serif;
